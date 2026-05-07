@@ -3,33 +3,59 @@ import styles from './Team.module.css';
 
 const TEAM = [
   {
-    initials: 'AB',
-    name: 'Alice Brown',
+    initials: 'RM',
+    name: 'Rochelle Mitchell',
+    studentID: '21141960',
     role: 'Lead Researcher',
-    bio: 'Describe this person's background, expertise, and what they contribute to the project. Keep it punchy and specific.',
+    bio: 'TBA',
     links: { github: '#', linkedin: '#' },
   },
   {
-    initials: 'CG',
-    name: 'Carlos García',
-    role: 'Systems Engineer',
-    bio: 'What does this engineer focus on? Hardware, software, integration? One to two sentences that tell the reader exactly what they need to know.',
+    initials: 'FK',
+    name: 'Falatugatuga Kerslake',
+    studentID: '',
+    role: 'TBA',
+    bio: 'TBA',
     links: { github: '#', linkedin: '#' },
   },
   {
-    initials: 'MK',
-    name: 'Maya Kato',
-    role: 'Data & Analysis',
-    bio: 'This person handles measurement, evaluation, and statistical work. Describe the kinds of problems they tackle and tools they use.',
+    initials: 'RJ',
+    name: 'Rashed Jasem',
+    studentID: '',
+    role: 'TBA',
+    bio: 'TBA',
     links: { github: '#', linkedin: '#' },
   },
   {
-    initials: 'JS',
-    name: 'James Singh',
-    role: 'Prototyping',
-    bio: 'The builder. Describe their prototyping philosophy, materials or tools they prefer, and what they've shipped as part of this project.',
+    initials: 'IS',
+    name: 'Ibrahim Sarver',
+    studentID: '',
+    role: 'TBA',
+    bio: 'TBA',
     links: { github: '#' },
   },
+  {
+    initials: 'JJ',
+    name: 'Jack Jenden',
+    studentID: '',
+    role: 'TBA',
+    bio: 'TBA'
+  },
+  {
+    initials: 'SG',
+    name: 'Sainaren Gudipoodi ',
+    studentID: '',
+    role: 'TBA',
+    bio: 'TBA'
+  },
+  {
+    name: 'Dr. Nurul Sakar',
+    role: 'Client'
+  },
+  {
+    name: 'Mee Loong (Bobby) Yang',
+    role: 'Project Mentor and Supervisor'
+  }
 ];
 
 export default function Team() {
@@ -52,7 +78,7 @@ export default function Team() {
               <div className={styles.memberInfo}>
                 <h3 className={styles.memberName}>{member.name}</h3>
                 <p className={styles.memberRole}>{member.role}</p>
-                <p className={styles.memberBio}>{member.bio}</p>
+                <p className={styles.memberBio}>{member.studentID}</p>
                 <div className={styles.memberLinks}>
                   {member.links.github && (
                     <a
