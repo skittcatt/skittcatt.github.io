@@ -6,55 +6,55 @@ const TEAM = [
     initials: 'RM',
     name: 'Rochelle Mitchell',
     studentID: '21141960',
-    role: 'Lead Researcher',
-    bio: 'TBA',
-    links: { github: '#', linkedin: '#' },
+    role: 'Project Lead',
+    bio: 'Cybersecurity and Networks Student'
   },
   {
     initials: 'FK',
     name: 'Falatugatuga Kerslake',
-    studentID: '',
-    role: 'TBA',
-    bio: 'TBA',
-    links: { github: '#', linkedin: '#' },
+    studentID: '22181971',
+    role: 'Cloud-Based AI Technical Tester and Researcher',
+    bio: 'Cybersecurity and Networks Student'
   },
   {
     initials: 'RJ',
     name: 'Rashed Jasem',
-    studentID: '',
-    role: 'TBA',
-    bio: 'TBA',
-    links: { github: '#', linkedin: '#' },
+    studentID: '23180352',
+    role: 'Local-Based AI Technical Tester and Researcher',
+    bio: 'Cybersecurity and Networks Student'
   },
   {
     initials: 'IS',
     name: 'Ibrahim Sarver',
-    studentID: '',
-    role: 'TBA',
-    bio: 'TBA',
-    links: { github: '#' },
+    studentID: '20113140',
+    role: 'Local-Based AI Technical Tester and Researcher',
+    bio: 'Cybersecurity and Networks Student'
   },
   {
     initials: 'JJ',
     name: 'Jack Jenden',
-    studentID: '',
-    role: 'TBA',
-    bio: 'TBA'
+    studentID: '24237621',
+    role: 'Cloud-Based AI Technical Tester and Researcher',
+    bio: 'Cybersecurity and Networks Student'
   },
   {
     initials: 'SG',
     name: 'Sainaren Gudipoodi ',
-    studentID: '',
-    role: 'TBA',
-    bio: 'TBA'
+    studentID: '21139006',
+    role: 'Data Analyst and Assistant Researcher',
+    bio: 'Data Science Student'
   },
   {
-    name: 'Dr. Nurul Sakar',
-    role: 'Client'
+    initials: 'NS',
+    name: 'Dr. Nurul I. Sarkar',
+    role: 'Client',
+    bio: 'Professor of Engineering, Computer and Mathematical Sciences at AUT'
   },
   {
-    name: 'Mee Loong (Bobby) Yang',
-    role: 'Project Mentor and Supervisor'
+    initials: 'MLY',
+    name: 'Dr. Mee Loong (Bobby) Yang',
+    role: 'Project Mentor and Supervisor',
+    bio: 'Senior Lecturer of Engineering, Computer and Mathematical Sciences at AUT'
   }
 ];
 
@@ -64,10 +64,9 @@ export default function Team() {
       <div className={styles.container}>
         <div className={styles.pageHeader}>
           <p className={styles.sectionTag}>The Team</p>
-          <h1 className={styles.pageTitle}>Who's behind it</h1>
+          <h1 className={styles.pageTitle}>Who's behind the Project</h1>
           <p className={styles.pageSub}>
-            A small, focused group with complementary skills. Replace these placeholder
-            profiles with real bios and headshots.
+            A team full of inspired and interested people behind exploring the energy usage of different AI.
           </p>
         </div>
 
@@ -79,45 +78,10 @@ export default function Team() {
                 <h3 className={styles.memberName}>{member.name}</h3>
                 <p className={styles.memberRole}>{member.role}</p>
                 <p className={styles.memberBio}>{member.studentID}</p>
-                <div className={styles.memberLinks}>
-                  {member.links.github && (
-                    <a
-                      href={member.links.github}
-                      className={styles.memberLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      GitHub
-                    </a>
-                  )}
-                  {member.links.linkedin && (
-                    <a
-                      href={member.links.linkedin}
-                      className={styles.memberLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      LinkedIn
-                    </a>
-                  )}
-                </div>
+                <p className={styles.memberBio}>{member.bio}</p>
               </div>
             </div>
           ))}
-        </div>
-
-        <div className={styles.joinSection}>
-          <div className={styles.joinCard}>
-            <p className={styles.sectionTag}>Open Roles</p>
-            <h2 className={styles.joinTitle}>Work with us</h2>
-            <p className={styles.joinBody}>
-              Are you an engineer or researcher who wants to contribute? Describe what
-              kind of collaborators you're looking for and how they can reach out.
-            </p>
-            <a href="/#/contact" className={styles.joinCta}>
-              Get in Touch →
-            </a>
-          </div>
         </div>
       </div>
     </div>

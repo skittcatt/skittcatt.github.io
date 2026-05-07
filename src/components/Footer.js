@@ -7,8 +7,8 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.inner}>
         <div className={styles.brand}>
-          <span className={styles.logoMark}>R&amp;D</span>
-          <p className={styles.tagline}>Engineering the future, one iteration at a time.</p>
+          <span className={styles.logoMark}>2025-2026 R&amp;D</span>
+          <p className={styles.tagline}>Exploring Energy Use of AI in Practical Scenarios</p>
         </div>
         <nav className={styles.links}>
           <NavLink to="/">Home</NavLink>
@@ -16,7 +16,7 @@ export default function Footer() {
           <NavLink to="/team">Team</NavLink>
           <NavLink to="/contact">Contact</NavLink>
         </nav>
-        <p className={styles.copy}>© {new Date().getFullYear()} ProjectName. All rights reserved.</p>
+        <p className={styles.copy}>© {new Date().getFullYear()} Exploring Energy Use of AI in Practical Scenarios. All rights reserved.</p>
       </div>
     </footer>
   );
