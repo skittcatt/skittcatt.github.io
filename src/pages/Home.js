@@ -3,10 +3,9 @@ import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
 
 const STATS = [
-  { value: '3+', label: 'Years Active' },
   { value: '12', label: 'Experiments' },
-  { value: '4', label: 'Publications' },
-  { value: '2', label: 'Active Prototypes' },
+  { value: '4', label: 'Prompts' },
+  { value: '2', label: 'Lines of Data' },
 ];
 
 export default function Home() {
@@ -20,11 +19,11 @@ export default function Home() {
             Active Research Project
           </div>
           <h1 className={styles.headline}>
-            Engineering
+            Exploring Energy Use of
             <br />
-            <span className={styles.accentText}>Next-Generation</span>
+            <span className={styles.accentText}>Artifical Intelligence</span>
             <br />
-            Solutions
+            in Practical Scenarios
           </h1>
           <p className={styles.sub}>
             A focused R&D initiative pushing the boundaries of applied engineering.
