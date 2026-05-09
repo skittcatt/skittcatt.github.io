@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
 
 const STATS = [
-  { value: '12', label: 'Experiments' },
-  { value: '4', label: 'Prompts' },
-  { value: '2', label: 'Lines of Data' },
+  { value: '8', label: 'Categories'},
+  { value: '20+', label: 'Prompts' },
+  { value: '?', label: 'Runs' },
+  { value: '6', label: 'Dedicated People'}
 ];
 
 export default function Home() {
@@ -16,7 +17,7 @@ export default function Home() {
         <div className={styles.heroInner}>
           <div className={styles.badge}>
             <span className={styles.dot}></span>
-            Active Research Project
+            Auckland University of Technology 2026 Research & Development Project
           </div>
           <h1 className={styles.headline}>
             Exploring Energy Use of
@@ -61,18 +62,12 @@ export default function Home() {
           <div className={styles.aboutGrid}>
             <div className={styles.aboutText}>
               <p className={styles.sectionTag}>About the Project</p>
-              <h2 className={styles.sectionTitle}>Built for depth,<br />not breadth</h2>
+              <h2 className={styles.sectionTitle}>We wanted answers,<br />so we didn't stop testing</h2>
               <p className={styles.body}>
-                Replace this with your project description. What problem are you solving?
-                What makes your approach different? This is where you hook engineers,
-                collaborators, and stakeholders.
-              </p>
-              <p className={styles.body}>
-                Describe your methodology, your tooling, or your core hypothesis here.
-                Keep it specific — vague abstractions lose technical audiences fast.
+                lalalal
               </p>
               <Link to="/research" className={styles.textLink}>
-                Explore the research →
+                Explore our findings →
               </Link>
             </div>
             <div className={styles.aboutVisual}>

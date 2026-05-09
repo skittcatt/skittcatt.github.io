@@ -22,8 +22,8 @@ export default function Navbar() {
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <nav className={styles.nav}>
         <NavLink to="/" className={styles.logo}>
-          <span className={styles.logoMark}>R&amp;D</span>
-          <span className={styles.logoName}>ProjectName</span>
+          <span className={styles.logoMark}>AUT 2026 R&amp;D Project</span>
+          <span className={styles.logoName}>Exploring Energy Use of AI in Practical Scenarios</span>
         </NavLink>
 
         <ul className={`${styles.links} ${open ? styles.open : ''}`}>

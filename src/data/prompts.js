@@ -1,17 +1,3 @@
-// ============================================================
-//  PROMPTS DATA — edit this file to update the Research page
-// ============================================================
-//
-//  RATINGS:  "Excellent" | "Good" | "Okay" | "Poor"
-//
-//  Each prompt has a `local` and `cloud` array.
-//  Add as many models as you like to each array.
-//
-//  CUSTOM FIELDS: add any extra key/value pairs to the
-//  `custom` object and they will appear automatically.
-//
-// ============================================================
-
 export const PROMPTS = [
   {
     id: 1,
