@@ -75,9 +75,7 @@ export default function Home() {
                   <span></span><span></span><span></span>
                 </div>
                 <pre className={styles.terminalCode}>
-{`$ ./run_experiment.sh --v2
 
-> Results saved to /output/v2`}
                 </pre>
               </div>
             </div>
