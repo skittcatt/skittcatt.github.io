@@ -12,9 +12,9 @@ export default function Footer() {
         </div>
         <nav className={styles.links}>
           <NavLink to="/">Home</NavLink>
-          <NavLink to="/research">Research</NavLink>
+          <NavLink to="/proposal">The Why</NavLink>
+          <NavLink to="/research">Comparisons</NavLink>
           <NavLink to="/team">Team</NavLink>
-          <NavLink to="/contact">Contact</NavLink>
         </nav>
         <p className={styles.copy}>© {new Date().getFullYear()} Exploring Energy Use of AI in Practical Scenarios. All rights reserved.</p>
       </div>

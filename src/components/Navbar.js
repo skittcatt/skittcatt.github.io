@@ -4,6 +4,7 @@ import styles from './Navbar.module.css';
 
 const NAV_LINKS = [
   { to: '/', label: 'Home' },
+  { to: '/proposal', label: 'The Why?' },
   { to: '/research', label: 'Comparisons' },
   { to: '/team', label: 'Team' },
 ];

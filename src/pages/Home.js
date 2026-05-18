@@ -4,15 +4,14 @@ import styles from './Home.module.css';
 
 const STATS = [
   { value: '8', label: 'Categories'},
-  { value: '20+', label: 'Prompts' },
-  { value: '?', label: 'Runs' },
-  { value: '6', label: 'Dedicated People'}
+  { value: '26', label: 'Prompts' },
+  { value: '100+', label: 'Runs' },
+  { value: '6', label: 'Dedicated Students'}
 ];
 
 export default function Home() {
   return (
     <div className={styles.page}>
-      {/* Hero */}
       <section className={styles.hero}>
         <div className={styles.heroInner}>
           <div className={styles.badge}>
@@ -27,12 +26,12 @@ export default function Home() {
             in Practical Scenarios
           </h1>
           <p className={styles.sub}>
-            A focused R&D initiative pushing the boundaries of applied engineering.
-            Rigorous methodology. Real-world impact. Reproducible results.
+            A team of students studying in their last year of Computer and Information Sciences at AUT with a passion
+            to discover and provide insight into this fast-growing technology. See below for our research by comparing the 
+            energy usage of different prompts that relate to real everyday cybersecurity scenarios.
           </p>
           <div className={styles.ctas}>
             <Link to="/research" className={styles.ctaPrimary}>View Research</Link>
-            <Link to="/contact" className={styles.ctaSecondary}>Get in Touch</Link>
           </div>
         </div>
         <div className={styles.grid} aria-hidden="true">
@@ -64,10 +63,10 @@ export default function Home() {
               <p className={styles.sectionTag}>About the Project</p>
               <h2 className={styles.sectionTitle}>We wanted answers,<br />so we didn't stop testing</h2>
               <p className={styles.body}>
-                lalalal
+                
               </p>
-              <Link to="/research" className={styles.textLink}>
-                Explore our findings →
+              <Link to="/proposal" className={styles.textLink}>
+                Explore Why we took on this research ⋙
               </Link>
             </div>
             <div className={styles.aboutVisual}>
@@ -77,15 +76,6 @@ export default function Home() {
                 </div>
                 <pre className={styles.terminalCode}>
 {`$ ./run_experiment.sh --v2
-
-> Initializing pipeline...
-> Loading dataset      [OK]
-> Running inference    [OK]
-> Evaluating metrics   [OK]
-
-Accuracy:  94.7%
-Latency:   12ms avg
-Delta:     +3.2% vs baseline
 
 > Results saved to /output/v2`}
                 </pre>
