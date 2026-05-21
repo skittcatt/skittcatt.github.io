@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
 
 const STATS = [
-  { value: '8', label: 'Categories'},
-  { value: '26', label: 'Prompts' },
+  { value: '7', label: 'Categories'},
+  { value: '23', label: 'Prompts' },
   { value: '100+', label: 'Runs' },
   { value: '6', label: 'Dedicated Students'}
 ];
@@ -68,17 +68,7 @@ export default function Home() {
               <Link to="/proposal" className={styles.textLink}>
                 Explore Why we took on this research ⋙
               </Link>
-            </div>
-            <div className={styles.aboutVisual}>
-              <div className={styles.terminalBlock}>
-                <div className={styles.terminalHeader}>
-                  <span></span><span></span><span></span>
-                </div>
-                <pre className={styles.terminalCode}>
-
-                </pre>
               </div>
-            </div>
           </div>
         </div>
       </section>

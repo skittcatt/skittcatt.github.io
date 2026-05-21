@@ -29,9 +29,10 @@ function ModelCard({ model, side }) {
       </div>
       <div className={styles.statsBlock}>
         <StatRow label="Response time" value={model.responseTime} />
-        <StatRow label="Tokens" value={model.tokens.toLocaleString()} />
-        <StatRow label="Cost" value={model.cost} />
+        <StatRow label="Input Tokens Count" value={model.inputTokens.toLocaleString()} />
+        <StatRow label="Output Tokens Count" value={model.outputTokens?.toLocaleString()} />
         {customEntries.map(([k, v]) => <StatRow key={k} label={k} value={v} />)}
+        <StatRow label="Cost" value={model.cost} />
       </div>
       <div className={styles.explanationBlock}>
         <p className={styles.explanationLabel}>Quality assessment</p>
@@ -90,9 +91,6 @@ function PromptCard({ entry, index }) {
           <span className={styles.sideCount}>🖥 {entry.local.length}</span>
           <span className={styles.vs}>vs</span>
           <span className={styles.sideCount}>☁️ {entry.cloud.length}</span>
-          {winner === 'local' && <span className={styles.winnerTag}>🖥 wins</span>}
-          {winner === 'cloud' && <span className={styles.winnerTag}>☁️ wins</span>}
-          {winner === 'tie' && <span className={styles.tieTag}>Tie</span>}
           <span className={`${styles.chevron} ${open ? styles.chevronOpen : ''}`}>▾</span>
         </div>
       </button>
@@ -158,7 +156,7 @@ export default function Research() {
           <p className={styles.sectionTag}>Research</p>
           <h1 className={styles.pageTitle}>Prompt Comparisons</h1>
           <p className={styles.pageSub}>
-            26 cybersecurity prompts tested across local and cloud AI models.
+            23 cybersecurity prompts tested across local and cloud AI models.
             Click any prompt to see the full scenario, difficulty tier, and model results.
           </p>
         </div>
