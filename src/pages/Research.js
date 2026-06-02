@@ -3,9 +3,19 @@ import { PROMPTS, CATEGORIES } from '../data/prompts';
 import styles from './Research.module.css';
 
 const RATING_ORDER = { Excellent: 4, Good: 3, Okay: 2, Poor: 1 };
-
 const DIFFICULTY_COLORS = { Easy: 'diffEasy', Medium: 'diffMedium', Hard: 'diffHard' };
 
+// ── Static summary stats (from experiment data) ──────────────────────────────
+const SUMMARY_STATS = [
+  { label: 'Scenarios Tested',       value: '23',        sub: 'across 7 categories' },
+  { label: 'Models Evaluated',       value: '4',         sub: '3 cloud · 1 local' },
+  { label: 'Avg Cloud Response',     value: '3.0s',      sub: 'vs 23.5s local' },
+  { label: 'Cloud Energy / Request', value: '330 J',     sub: 'avg across 3 models' },
+  { label: 'Local Energy / Scenario',value: '0.163 kWh', sub: '~1,780× more than cloud' },
+  { label: 'Total Cloud Runs',       value: '360',       sub: 'NZD $0.047 total cost' },
+];
+
+// ── Sub-components ────────────────────────────────────────────────────────────
 function RatingBadge({ rating }) {
   return <span className={`${styles.ratingBadge} ${styles['rating' + rating]}`}>{rating}</span>;
 }
@@ -95,16 +105,13 @@ function PromptCard({ entry, index }) {
         </div>
       </button>
 
-      {/* ── Expanded content ── */}
       {open && (
         <div className={styles.expandedContent}>
-          {/* Full prompt */}
           <div className={styles.fullPromptSection}>
             <p className={styles.fullPromptLabel}>Full Prompt</p>
             <pre className={styles.fullPromptText}>{entry.fullPrompt}</pre>
           </div>
 
-          {/* Difficulty + category info bar */}
           <div className={styles.infoBar}>
             <div className={styles.infoItem}>
               <span className={styles.infoKey}>Difficulty</span>
@@ -126,7 +133,6 @@ function PromptCard({ entry, index }) {
             </div>
           </div>
 
-          {/* Model comparison columns */}
           <div className={styles.panelsGrid}>
             <ModelColumn side="local" models={entry.local} />
             <ModelColumn side="cloud" models={entry.cloud} />
@@ -137,6 +143,7 @@ function PromptCard({ entry, index }) {
   );
 }
 
+// ── Main page ─────────────────────────────────────────────────────────────────
 export default function Research() {
   const [category, setCategory] = useState('All');
   const [difficulty, setDifficulty] = useState('All');
@@ -152,6 +159,8 @@ export default function Research() {
   return (
     <div className={styles.page}>
       <div className={styles.container}>
+
+        {/* ── Page header ── */}
         <div className={styles.pageHeader}>
           <p className={styles.sectionTag}>Research</p>
           <h1 className={styles.pageTitle}>Prompt Comparisons</h1>
@@ -161,6 +170,36 @@ export default function Research() {
           </p>
         </div>
 
+        {/* ── Key stats summary ── */}
+        <section className={styles.summarySection}>
+          <p className={styles.sectionTag}>Overview</p>
+          <h2 className={styles.sectionTitle}>Key Statistics</h2>
+          <p className={styles.summaryBlurb}>
+            This research tested 23 structured cybersecurity prompts across four AI models, 
+            GPT-3.5-turbo, Gemini Pro, Mistral Small, and a locally-hosted Meta LLaMA 2 7B,
+            spanning seven categories including phishing detection, threat analysis, vulnerability
+            assessment, and incident response. The central finding is that output token length,
+            not prompt complexity, is the dominant driver of energy consumption in both cloud
+            and local deployments. Cloud inference proved dramatically more efficient, averaging
+            just 330 J per request at consistent 3-second response times, while the local model
+            used approximately 1,780 times more energy per task and responded 7.8× more slowly.
+            However, local deployment keeps all data on-premises; a trade-off that may be
+            essential in regulated or security-sensitive environments.
+          </p>
+          <div className={styles.statsGrid}>
+            {SUMMARY_STATS.map((s) => (
+              <div key={s.label} className={styles.statCard}>
+                <span className={styles.statCardValue}>{s.value}</span>
+                <span className={styles.statCardLabel}>{s.label}</span>
+                <span className={styles.statCardSub}>{s.sub}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <div className={styles.divider} />
+
+        {/* ── Legend ── */}
         <div className={styles.legend}>
           <div className={styles.legendItem}><span className={styles.legendDotLocal} />🖥 Local AI</div>
           <div className={styles.legendItem}><span className={styles.legendDotCloud} />☁️ Cloud AI</div>
@@ -169,7 +208,7 @@ export default function Research() {
           <div className={styles.legendItem}><span className={`${styles.legendDot} ${styles.diffHardDot}`} />Hard</div>
         </div>
 
-        {/* Filters */}
+        {/* ── Filters ── */}
         <div className={styles.filterRow}>
           <div className={styles.filterGroup}>
             <span className={styles.filterLabel}>Category:</span>
@@ -195,14 +234,14 @@ export default function Research() {
 
         <p className={styles.resultCount}>{filtered.length} prompt{filtered.length !== 1 ? 's' : ''} shown</p>
 
-        {/* Prompt list */}
+        {/* ── Prompt list ── */}
         <div className={styles.promptList}>
           {filtered.length === 0 && <p className={styles.empty}>No prompts match these filters.</p>}
           {filtered.map((entry, i) => <PromptCard key={entry.id} entry={entry} index={i} />)}
         </div>
 
-        {/* Summary */}
-        <div className={styles.summarySection}>
+        {/* ── Bottom summary ── */}
+        <div className={styles.bottomSummarySection}>
           <p className={styles.sectionTag}>Summary</p>
           <h2 className={styles.sectionTitle}>Overall results</h2>
           <div className={styles.summaryGrid}>
@@ -224,6 +263,7 @@ export default function Research() {
             ))}
           </div>
         </div>
+
       </div>
     </div>
   );
