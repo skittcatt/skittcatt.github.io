@@ -166,6 +166,8 @@ export default function Research() {
           </p>
         </div>
 
+        <div className={styles.divider} />
+
         {/* ── Key stats summary ── */}
         <section className={styles.summarySection}>
           <p className={styles.sectionTag}>Overview</p>
@@ -194,15 +196,6 @@ export default function Research() {
         </section>
 
         <div className={styles.divider} />
-
-        {/* ── Legend ── */}
-        <div className={styles.legend}>
-          <div className={styles.legendItem}><span className={styles.legendDotLocal} />🖥 Local AI</div>
-          <div className={styles.legendItem}><span className={styles.legendDotCloud} />☁️ Cloud AI</div>
-          <div className={styles.legendItem}><span className={`${styles.legendDot} ${styles.diffEasyDot}`} />Easy</div>
-          <div className={styles.legendItem}><span className={`${styles.legendDot} ${styles.diffMediumDot}`} />Medium</div>
-          <div className={styles.legendItem}><span className={`${styles.legendDot} ${styles.diffHardDot}`} />Hard</div>
-        </div>
 
         {/* ── Filters ── */}
         <div className={styles.filterRow}>
