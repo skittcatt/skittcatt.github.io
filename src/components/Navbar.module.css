@@ -17,6 +17,10 @@
   border-bottom-color: var(--border);
 }
 
+[data-theme="light"] .scrolled {
+  background: rgba(244, 244, 251, 0.92);
+}
+
 .nav {
   max-width: 1200px;
   margin: 0 auto;
@@ -76,11 +80,44 @@
   background: rgba(255, 255, 255, 0.05);
 }
 
+[data-theme="light"] .link:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
 .link.active {
   color: var(--accent);
   background: var(--accent-dim);
 }
 
+/* ── Controls (toggle + hamburger) ── */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ── Theme toggle ── */
+.themeToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+
+.themeToggle:hover {
+  color: var(--accent);
+  background: var(--accent-dim);
+  border-color: var(--border-accent);
+}
+
+/* ── Hamburger ── */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -118,6 +155,10 @@
     gap: 0;
     padding: 1rem 2rem;
     border-bottom: 1px solid var(--border);
+  }
+
+  [data-theme="light"] .links {
+    background: rgba(244, 244, 251, 0.97);
   }
 
   .links.open {

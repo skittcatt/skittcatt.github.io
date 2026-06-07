@@ -44,10 +44,6 @@ function ModelCard({ model, side }) {
         {customEntries.map(([k, v]) => <StatRow key={k} label={k} value={v} />)}
         <StatRow label="Cost" value={model.cost} />
       </div>
-      <div className={styles.explanationBlock}>
-        <p className={styles.explanationLabel}>Quality assessment</p>
-        <p className={styles.explanationText}>{model.explanation}</p>
-      </div>
     </div>
   );
 }
@@ -239,31 +235,6 @@ export default function Research() {
           {filtered.length === 0 && <p className={styles.empty}>No prompts match these filters.</p>}
           {filtered.map((entry, i) => <PromptCard key={entry.id} entry={entry} index={i} />)}
         </div>
-
-        {/* ── Bottom summary ── */}
-        <div className={styles.bottomSummarySection}>
-          <p className={styles.sectionTag}>Summary</p>
-          <h2 className={styles.sectionTitle}>Overall results</h2>
-          <div className={styles.summaryGrid}>
-            {['local', 'cloud'].map((side) => (
-              <div key={side} className={styles.summaryCard}>
-                <span className={styles.summaryLabel}>
-                  {side === 'local' ? '🖥 Local AI' : '☁️ Cloud AI'}
-                  <span className={styles.summaryModelCount}> — {[...new Set(allModels(side).map(m => m.model))].length} models tested</span>
-                </span>
-                <div className={styles.summaryStats}>
-                  {['Excellent', 'Good', 'Okay', 'Poor'].map((r) => {
-                    const count = allModels(side).filter((m) => m.rating === r).length;
-                    return count > 0 ? (
-                      <span key={r} className={`${styles.summaryBadge} ${styles['rating' + r]}`}>{count}× {r}</span>
-                    ) : null;
-                  })}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
       </div>
     </div>
   );
