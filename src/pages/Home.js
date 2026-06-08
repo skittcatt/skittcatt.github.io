@@ -15,22 +15,25 @@ const FEATURED = {
   title: 'Insider Threat — Departing Employee',
   category: 'Threat Detection',
   difficulty: 'Hard',
-  prompt: `Flag suspicious insider activity from these user behaviour logs:
+  prompt: `[DIFFICULTY: HARD]
+Flag suspicious insider activity from these user behaviour logs:
 
-User: emily.chen@company.com (Marketing Manager) — Sunday 2:45 AM
-• Accessed HR database (outside her role permissions)
-• Downloaded 2,500 employee records (names, emails, salaries)
-• Exported files to USB drive
-• Sent 15 emails to personal Gmail with attachments
-• Cleared browser history and deleted temp files
-• VPN source: airport Wi-Fi
+User: emily.chen@company.com (Marketing Manager)
+Time: Sunday 2:45 AM
 
-Context: Emily submitted her resignation on Friday. Her last day is
-next Friday. USB exports are policy violations. Access to HR and Sales
-data is outside her defined role.
+Actions in session:
+- Accessed HR database (outside her role permissions)
+- Downloaded 2,500 employee records (names, emails, salaries)
+- Exported files to USB drive
+- Accessed competitor pricing documents (Sales department files)
+- Sent 15 emails to personal Gmail with attachments
+- Cleared browser history and deleted temp files
+- VPN source: airport Wi-Fi
+
+Context: Emily submitted her resignation on Friday. Her last day is next Friday. She has never logged in on weekends before. USB exports are policy violations. Access to HR and Sales data is outside her defined role.
 
 Respond with:
-1. Classification: insider threat type and severity (1 sentence)
+1. Assessment: insider threat classification and severity (1 sentence)
 2. Key Indicators: exactly 3 bullet points identifying high-risk behaviours
 3. Immediate Actions: exactly 3 bullet points for HR and IT response
 4. Prevention: exactly 2 bullet points on offboarding access controls`,

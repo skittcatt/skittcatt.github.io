@@ -37,11 +37,11 @@ function ModelCard({ model, side }) {
         <RatingBadge rating={model.rating} />
       </div>
       <div className={styles.statsBlock}>
-        <StatRow label="Response time" value={model.responseTime} />
-        <StatRow label="Input Tokens Count" value={model.inputTokens.toLocaleString()} />
-        <StatRow label="Output Tokens Count" value={model.outputTokens?.toLocaleString()} />
-        {customEntries.map(([k, v]) => <StatRow key={k} label={k} value={v} />)}
-        <StatRow label="Cost" value={model.cost} />
+        {model.responseTime && <StatRow label="Response time" value={model.responseTime} />}
+        {model.inputTokens != null && <StatRow label="Input Tokens Count" value={model.inputTokens.toLocaleString()} />}
+        {model.outputTokens != null && <StatRow label="Output Tokens Count" value={model.outputTokens.toLocaleString()} />}
+        {customEntries.filter(([, v]) => v !== '' && v != null).map(([k, v]) => <StatRow key={k} label={k} value={v} />)}
+        {model.cost && model.cost !== '$0.00' && <StatRow label="Cost" value={model.cost} />}
       </div>
     </div>
   );
@@ -136,7 +136,7 @@ export default function Research() {
     const diffMatch = difficulty === 'All' || p.difficulty === difficulty;
     return catMatch && diffMatch;
   });
-
+ 
   return (
     <div className={styles.page}>
       <div className={styles.container}>
