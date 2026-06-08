@@ -128,8 +128,8 @@ export default function Proposal() {
             Cloud inference demonstrated consistent and predictable energy usage across all four
             workload sizes. Average energy per request remained stable at 0.0000936 kWh whether
             processing 10 or 200 prompts, confirming linear rather than exponential scaling.
-            Gemini Pro was the most energy-efficient cloud model at an average of 270 J per request,
-            compared to 338 J for Mistral Small and 383 J for GPT-3.5-turbo. Total cost for all
+            Gemini Pro was the most energy-efficient cloud model at an average of 459 J per request,
+            compared to 574 J for Mistral Small and 651 J for GPT-3.5-turbo. Total cost for all
             360 cloud runs across the scalability test was NZD $0.047 — demonstrating that
             cloud-based AI inference is extremely cost-efficient at moderate operational scale.
           </p>
@@ -142,7 +142,7 @@ export default function Proposal() {
           <h2 className={styles.sectionTitle}>Discussion</h2>
           <p className={styles.body}>
             The most practically significant finding is the scale of the energy difference between
-            local and cloud inference. The LLaMA 2 7B model used approximately 1,780 times more
+            local and cloud inference. The LLaMA 2 7B model used approximately 1,048 times more
             energy per scenario than the average cloud model, while responding 7.8× more slowly.
             For high-volume SOC environments where analysts need rapid responses, cloud inference
             is the clear winner on both speed and energy efficiency.
@@ -177,19 +177,19 @@ export default function Proposal() {
                   <td>GPT-3.5-turbo</td>
                   <td>Cloud</td>
                   <td>3.0 s</td>
-                  <td>383 J (0.000106 kWh)</td>
+                  <td>651 J (0.000181 kWh)</td>
                 </tr>
                 <tr>
                   <td>Gemini Pro</td>
                   <td>Cloud</td>
                   <td>3.0 s</td>
-                  <td>270 J (0.000075 kWh)</td>
+                  <td>459 J (0.000128 kWh)</td>
                 </tr>
                 <tr>
                   <td>Mistral Small</td>
                   <td>Cloud</td>
                   <td>3.0 s</td>
-                  <td>338 J (0.000094 kWh)</td>
+                  <td>574 J (0.000159 kWh)</td>
                 </tr>
                 <tr>
                   <td>LLaMA 2 7B</td>
@@ -213,7 +213,7 @@ export default function Proposal() {
           <p className={styles.body}>
             This project demonstrated that cloud-based AI inference is significantly more
             energy-efficient and faster than local deployment for cybersecurity inference tasks,
-            with cloud models using approximately 1,780 times less energy per scenario and responding
+            with cloud models using approximately 1,048 times less energy per scenario and responding
             7.8× faster. Cloud energy usage scaled linearly and predictably, remaining stable at
             0.0000936 kWh per request across all tested workload sizes.
           </p>

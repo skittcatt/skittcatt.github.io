@@ -9,8 +9,8 @@ const SUMMARY_STATS = [
   { label: 'Scenarios Tested',       value: '23',        sub: 'across 7 categories' },
   { label: 'Models Evaluated',       value: '4',         sub: '3 cloud · 1 local' },
   { label: 'Avg Cloud Response',     value: '3.0s',      sub: 'vs 23.5s local' },
-  { label: 'Cloud Energy / Request', value: '330 J',     sub: 'avg across 3 models' },
-  { label: 'Local Energy / Scenario',value: '0.163 kWh', sub: '~1,780× more than cloud' },
+  { label: 'Cloud Energy / Request', value: '561 J',     sub: 'avg across 3 models' },
+  { label: 'Local Energy / Scenario',value: '0.163 kWh', sub: '~1,048× more than cloud' },
   { label: 'Total Cloud Runs',       value: '360',       sub: 'NZD $0.047 total cost' },
 ];
 
@@ -37,11 +37,11 @@ function ModelCard({ model, side }) {
         <RatingBadge rating={model.rating} />
       </div>
       <div className={styles.statsBlock}>
-        {model.responseTime && <StatRow label="Response time" value={model.responseTime} />}
-        {model.inputTokens != null && <StatRow label="Input Tokens Count" value={model.inputTokens.toLocaleString()} />}
-        {model.outputTokens != null && <StatRow label="Output Tokens Count" value={model.outputTokens.toLocaleString()} />}
-        {customEntries.filter(([, v]) => v !== '' && v != null).map(([k, v]) => <StatRow key={k} label={k} value={v} />)}
-        {model.cost && model.cost !== '$0.00' && <StatRow label="Cost" value={model.cost} />}
+        <StatRow label="Response time" value={model.responseTime} />
+        <StatRow label="Input Tokens Count" value={model.inputTokens.toLocaleString()} />
+        <StatRow label="Output Tokens Count" value={model.outputTokens?.toLocaleString()} />
+        {customEntries.map(([k, v]) => <StatRow key={k} label={k} value={v} />)}
+        <StatRow label="Cost" value={model.cost} />
       </div>
     </div>
   );
@@ -136,7 +136,7 @@ export default function Research() {
     const diffMatch = difficulty === 'All' || p.difficulty === difficulty;
     return catMatch && diffMatch;
   });
- 
+
   return (
     <div className={styles.page}>
       <div className={styles.container}>
@@ -164,8 +164,8 @@ export default function Research() {
             assessment, and incident response. The central finding is that output token length,
             not prompt complexity, is the dominant driver of energy consumption in both cloud
             and local deployments. Cloud inference proved dramatically more efficient, averaging
-            just 330 J per request at consistent 3-second response times, while the local model
-            used approximately 1,780 times more energy per task and responded 7.8× more slowly.
+            just 561 J per request at consistent 6-second response times, while the local model
+            used approximately 1,048 times more energy per task and responded 3.3× more slowly.
             However, local deployment keeps all data on-premises; a trade-off that may be
             essential in regulated or security-sensitive environments.
           </p>
