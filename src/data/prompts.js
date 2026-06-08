@@ -51,7 +51,6 @@ Respond with:
         responseTime: "3.0",
         inputTokens: 100,
         outputTokens: 200,
-
         custom: {
           "Avg Energy (kWh) — 1 run": "0.00010200",
           "Avg Energy (J) — 1 run": "367.2000",

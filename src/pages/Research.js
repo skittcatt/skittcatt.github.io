@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { PROMPTS, CATEGORIES } from '../data/prompts';
 import styles from './Research.module.css';
 
-const RATING_ORDER = { Excellent: 4, Good: 3, Okay: 2, Poor: 1 };
 const DIFFICULTY_COLORS = { Easy: 'diffEasy', Medium: 'diffMedium', Hard: 'diffHard' };
 
 // ── Static summary stats (from experiment data) ──────────────────────────────
@@ -63,20 +62,8 @@ function ModelColumn({ side, models }) {
   );
 }
 
-function bestRating(models) {
-  return models.reduce((best, m) =>
-    (RATING_ORDER[m.rating] || 0) > (RATING_ORDER[best] || 0) ? m.rating : best,
-    models[0]?.rating
-  );
-}
-
 function PromptCard({ entry, index }) {
   const [open, setOpen] = useState(false);
-  const localBest = bestRating(entry.local);
-  const cloudBest = bestRating(entry.cloud);
-  const localScore = RATING_ORDER[localBest] || 0;
-  const cloudScore = RATING_ORDER[cloudBest] || 0;
-  const winner = localScore > cloudScore ? 'local' : cloudScore > localScore ? 'cloud' : 'tie';
 
   return (
     <div className={`${styles.promptCard} ${open ? styles.promptCardOpen : ''}`}>
@@ -86,7 +73,7 @@ function PromptCard({ entry, index }) {
         aria-expanded={open}
       >
         <div className={styles.promptMeta}>
-          <span className={styles.promptIndex}>#{String(index + 1).padStart(2, '0')}</span>
+          <span className={styles.promptIndex}>#{String(index).padStart(2, '0')}</span>
           <span className={styles.promptTitle}>{entry.title}</span>
           <span className={`${styles.diffBadge} ${styles[DIFFICULTY_COLORS[entry.difficulty]]}`}>
             {entry.difficulty}
@@ -149,8 +136,6 @@ export default function Research() {
     const diffMatch = difficulty === 'All' || p.difficulty === difficulty;
     return catMatch && diffMatch;
   });
-
-  const allModels = (side) => PROMPTS.flatMap((p) => p[side]);
 
   return (
     <div className={styles.page}>
@@ -226,7 +211,7 @@ export default function Research() {
         {/* ── Prompt list ── */}
         <div className={styles.promptList}>
           {filtered.length === 0 && <p className={styles.empty}>No prompts match these filters.</p>}
-          {filtered.map((entry, i) => <PromptCard key={entry.id} entry={entry} index={i} />)}
+          {filtered.map((entry) => <PromptCard key={entry.id} entry={entry} index={entry.id} />)}
         </div>
       </div>
     </div>
