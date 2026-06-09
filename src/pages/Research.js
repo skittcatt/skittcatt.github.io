@@ -8,7 +8,7 @@ const DIFFICULTY_COLORS = { Easy: 'diffEasy', Medium: 'diffMedium', Hard: 'diffH
 const SUMMARY_STATS = [
   { label: 'Scenarios Tested',       value: '23',        sub: 'across 7 categories' },
   { label: 'Models Evaluated',       value: '4',         sub: '3 cloud · 1 local' },
-  { label: 'Avg Cloud Response',     value: '3.0s',      sub: 'vs 23.5s local' },
+  { label: 'Avg Cloud Response',     value: '5.1s',      sub: 'vs 23.5s local' },
   { label: 'Cloud Energy / Request', value: '561 J',     sub: 'avg across 3 models' },
   { label: 'Local Energy / Scenario',value: '0.163 kWh', sub: '~1,048× more than cloud' },
   { label: 'Total Cloud Runs',       value: '360',       sub: 'NZD $0.047 total cost' },
