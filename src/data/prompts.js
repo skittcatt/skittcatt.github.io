@@ -486,16 +486,16 @@ Respond with:
 Analyse this process behaviour for malware indicators:
 
 Process: svchost.exe (PID: 8472)
-Location: C:\Users\John\AppData\Local\Temp\svchost.exe
+Location: C:\\Users\\John\\AppData\\Local\\Temp\\svchost.exe
 Parent Process: outlook.exe
 Network: Beacon to 23.95.67.142:443 every 30 seconds
 File Activity:
-  Created: C:\Users\John\Documents.hidden\keylog.txt
-  Modified: HKCU\Software\Microsoft\Windows\CurrentVersion\Run
+  Created: C:\\Users\\John\\Documents.hidden\\keylog.txt
+  Modified: HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run
   Accessed: Chrome password store, Firefox login database
 CPU/RAM: 2% CPU, 45 MB (stable)
 
-Context: Legitimate svchost.exe runs only from C:\Windows\System32\ and is never spawned by outlook.exe. The destination IP has no business association. The registry key modified controls Windows startup persistence.
+Context: Legitimate svchost.exe runs only from C:\\Windows\\System32\\ and is never spawned by outlook.exe. The destination IP has no business association. The registry key modified controls Windows startup persistence.
 
 Respond with:
 1. Assessment: malware type and risk level (1 sentence)
