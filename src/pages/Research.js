@@ -2,10 +2,19 @@ import React, { useState } from 'react';
 import { PROMPTS, CATEGORIES } from '../data/prompts';
 import styles from './Research.module.css';
 
-const RATING_ORDER = { Excellent: 4, Good: 3, Okay: 2, Poor: 1 };
-
 const DIFFICULTY_COLORS = { Easy: 'diffEasy', Medium: 'diffMedium', Hard: 'diffHard' };
 
+// ── Static summary stats (from experiment data) ──────────────────────────────
+const SUMMARY_STATS = [
+  { label: 'Scenarios Tested',       value: '23',        sub: 'across 7 categories' },
+  { label: 'Models Evaluated',       value: '4',         sub: '3 cloud · 1 local' },
+  { label: 'Avg Cloud Response',     value: '3.0s',      sub: 'vs 23.5s local' },
+  { label: 'Cloud Energy / Request', value: '561 J',     sub: 'avg across 3 models' },
+  { label: 'Local Energy / Scenario',value: '0.163 kWh', sub: '~1,048× more than cloud' },
+  { label: 'Total Cloud Runs',       value: '360',       sub: 'NZD $0.047 total cost' },
+];
+
+// ── Sub-components ────────────────────────────────────────────────────────────
 function RatingBadge({ rating }) {
   return <span className={`${styles.ratingBadge} ${styles['rating' + rating]}`}>{rating}</span>;
 }
@@ -29,13 +38,10 @@ function ModelCard({ model, side }) {
       </div>
       <div className={styles.statsBlock}>
         <StatRow label="Response time" value={model.responseTime} />
-        <StatRow label="Tokens" value={model.tokens.toLocaleString()} />
-        <StatRow label="Cost" value={model.cost} />
+        <StatRow label="Input Tokens Count" value={model.inputTokens.toLocaleString()} />
+        <StatRow label="Output Tokens Count" value={model.outputTokens?.toLocaleString()} />
         {customEntries.map(([k, v]) => <StatRow key={k} label={k} value={v} />)}
-      </div>
-      <div className={styles.explanationBlock}>
-        <p className={styles.explanationLabel}>Quality assessment</p>
-        <p className={styles.explanationText}>{model.explanation}</p>
+        <StatRow label="Cost" value={model.cost} />
       </div>
     </div>
   );
@@ -56,20 +62,8 @@ function ModelColumn({ side, models }) {
   );
 }
 
-function bestRating(models) {
-  return models.reduce((best, m) =>
-    (RATING_ORDER[m.rating] || 0) > (RATING_ORDER[best] || 0) ? m.rating : best,
-    models[0]?.rating
-  );
-}
-
 function PromptCard({ entry, index }) {
   const [open, setOpen] = useState(false);
-  const localBest = bestRating(entry.local);
-  const cloudBest = bestRating(entry.cloud);
-  const localScore = RATING_ORDER[localBest] || 0;
-  const cloudScore = RATING_ORDER[cloudBest] || 0;
-  const winner = localScore > cloudScore ? 'local' : cloudScore > localScore ? 'cloud' : 'tie';
 
   return (
     <div className={`${styles.promptCard} ${open ? styles.promptCardOpen : ''}`}>
@@ -79,7 +73,7 @@ function PromptCard({ entry, index }) {
         aria-expanded={open}
       >
         <div className={styles.promptMeta}>
-          <span className={styles.promptIndex}>#{String(index + 1).padStart(2, '0')}</span>
+          <span className={styles.promptIndex}>#{String(index).padStart(2, '0')}</span>
           <span className={styles.promptTitle}>{entry.title}</span>
           <span className={`${styles.diffBadge} ${styles[DIFFICULTY_COLORS[entry.difficulty]]}`}>
             {entry.difficulty}
@@ -90,23 +84,17 @@ function PromptCard({ entry, index }) {
           <span className={styles.sideCount}>🖥 {entry.local.length}</span>
           <span className={styles.vs}>vs</span>
           <span className={styles.sideCount}>☁️ {entry.cloud.length}</span>
-          {winner === 'local' && <span className={styles.winnerTag}>🖥 wins</span>}
-          {winner === 'cloud' && <span className={styles.winnerTag}>☁️ wins</span>}
-          {winner === 'tie' && <span className={styles.tieTag}>Tie</span>}
           <span className={`${styles.chevron} ${open ? styles.chevronOpen : ''}`}>▾</span>
         </div>
       </button>
 
-      {/* ── Expanded content ── */}
       {open && (
         <div className={styles.expandedContent}>
-          {/* Full prompt */}
           <div className={styles.fullPromptSection}>
             <p className={styles.fullPromptLabel}>Full Prompt</p>
             <pre className={styles.fullPromptText}>{entry.fullPrompt}</pre>
           </div>
 
-          {/* Difficulty + category info bar */}
           <div className={styles.infoBar}>
             <div className={styles.infoItem}>
               <span className={styles.infoKey}>Difficulty</span>
@@ -128,7 +116,6 @@ function PromptCard({ entry, index }) {
             </div>
           </div>
 
-          {/* Model comparison columns */}
           <div className={styles.panelsGrid}>
             <ModelColumn side="local" models={entry.local} />
             <ModelColumn side="cloud" models={entry.cloud} />
@@ -139,6 +126,7 @@ function PromptCard({ entry, index }) {
   );
 }
 
+// ── Main page ─────────────────────────────────────────────────────────────────
 export default function Research() {
   const [category, setCategory] = useState('All');
   const [difficulty, setDifficulty] = useState('All');
@@ -149,29 +137,52 @@ export default function Research() {
     return catMatch && diffMatch;
   });
 
-  const allModels = (side) => PROMPTS.flatMap((p) => p[side]);
-
   return (
     <div className={styles.page}>
       <div className={styles.container}>
+
+        {/* ── Page header ── */}
         <div className={styles.pageHeader}>
           <p className={styles.sectionTag}>Research</p>
           <h1 className={styles.pageTitle}>Prompt Comparisons</h1>
           <p className={styles.pageSub}>
-            26 cybersecurity prompts tested across local and cloud AI models.
+            23 cybersecurity prompts tested across local and cloud AI models.
             Click any prompt to see the full scenario, difficulty tier, and model results.
           </p>
         </div>
 
-        <div className={styles.legend}>
-          <div className={styles.legendItem}><span className={styles.legendDotLocal} />🖥 Local AI</div>
-          <div className={styles.legendItem}><span className={styles.legendDotCloud} />☁️ Cloud AI</div>
-          <div className={styles.legendItem}><span className={`${styles.legendDot} ${styles.diffEasyDot}`} />Easy</div>
-          <div className={styles.legendItem}><span className={`${styles.legendDot} ${styles.diffMediumDot}`} />Medium</div>
-          <div className={styles.legendItem}><span className={`${styles.legendDot} ${styles.diffHardDot}`} />Hard</div>
-        </div>
+        <div className={styles.divider} />
 
-        {/* Filters */}
+        {/* ── Key stats summary ── */}
+        <section className={styles.summarySection}>
+          <p className={styles.sectionTag}>Overview</p>
+          <h2 className={styles.sectionTitle}>Key Statistics</h2>
+          <p className={styles.summaryBlurb}>
+            This research tested 23 structured cybersecurity prompts across four AI models, 
+            GPT-3.5-turbo, Gemini Pro, Mistral Small, and a locally-hosted Meta LLaMA 2 7B,
+            spanning seven categories including phishing detection, threat analysis, vulnerability
+            assessment, and incident response. The central finding is that output token length,
+            not prompt complexity, is the dominant driver of energy consumption in both cloud
+            and local deployments. Cloud inference proved dramatically more efficient, averaging
+            just 561 J per request at consistent 6-second response times, while the local model
+            used approximately 1,048 times more energy per task and responded 3.3× more slowly.
+            However, local deployment keeps all data on-premises; a trade-off that may be
+            essential in regulated or security-sensitive environments.
+          </p>
+          <div className={styles.statsGrid}>
+            {SUMMARY_STATS.map((s) => (
+              <div key={s.label} className={styles.statCard}>
+                <span className={styles.statCardValue}>{s.value}</span>
+                <span className={styles.statCardLabel}>{s.label}</span>
+                <span className={styles.statCardSub}>{s.sub}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <div className={styles.divider} />
+
+        {/* ── Filters ── */}
         <div className={styles.filterRow}>
           <div className={styles.filterGroup}>
             <span className={styles.filterLabel}>Category:</span>
@@ -197,34 +208,10 @@ export default function Research() {
 
         <p className={styles.resultCount}>{filtered.length} prompt{filtered.length !== 1 ? 's' : ''} shown</p>
 
-        {/* Prompt list */}
+        {/* ── Prompt list ── */}
         <div className={styles.promptList}>
           {filtered.length === 0 && <p className={styles.empty}>No prompts match these filters.</p>}
-          {filtered.map((entry, i) => <PromptCard key={entry.id} entry={entry} index={i} />)}
-        </div>
-
-        {/* Summary */}
-        <div className={styles.summarySection}>
-          <p className={styles.sectionTag}>Summary</p>
-          <h2 className={styles.sectionTitle}>Overall results</h2>
-          <div className={styles.summaryGrid}>
-            {['local', 'cloud'].map((side) => (
-              <div key={side} className={styles.summaryCard}>
-                <span className={styles.summaryLabel}>
-                  {side === 'local' ? '🖥 Local AI' : '☁️ Cloud AI'}
-                  <span className={styles.summaryModelCount}> — {[...new Set(allModels(side).map(m => m.model))].length} models tested</span>
-                </span>
-                <div className={styles.summaryStats}>
-                  {['Excellent', 'Good', 'Okay', 'Poor'].map((r) => {
-                    const count = allModels(side).filter((m) => m.rating === r).length;
-                    return count > 0 ? (
-                      <span key={r} className={`${styles.summaryBadge} ${styles['rating' + r]}`}>{count}× {r}</span>
-                    ) : null;
-                  })}
-                </div>
-              </div>
-            ))}
-          </div>
+          {filtered.map((entry) => <PromptCard key={entry.id} entry={entry} index={entry.id} />)}
         </div>
       </div>
     </div>

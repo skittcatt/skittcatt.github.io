@@ -1,6 +1,5 @@
 export const CATEGORIES = [
   "All",
-  "Baseline",
   "Email Security",
   "Threat Detection",
   "Vulnerability Assessment",
@@ -11,134 +10,9 @@ export const CATEGORIES = [
 ];
 
 export const PROMPTS = [
-  // ── BASELINE ──────────────────────────────────────────────
-  {
-    id: 1,
-    title: "DNS Resolution Process",
-    category: "Baseline",
-    difficulty: "Easy",
-    fullPrompt: `[DIFFICULTY: EASY | BASELINE]
-Answer this general knowledge question about computer networking:
-
-Topic: How DNS resolution works
-Question: A user types "www.example.com" into their browser. Describe the full sequence of steps that occurs from that moment until the browser receives the IP address it needs to connect to the server.
-
-Context: The user is on a standard home network. Their router acts as a local DNS resolver. Assume no cached results exist anywhere in the chain. The domain is registered and has valid A records. The explanation is for a technical audience familiar with networking basics.
-
-Respond with:
-Summary: describe the DNS resolution process in 1 sentence
-Key Steps: exactly 3 bullet points covering the main resolution stages
-Components Involved: exactly 3 bullet points naming the systems queried
-Optimisation: exactly 2 bullet points on how caching speeds up repeat lookups`,
-    local: [
-      {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
-      },
-    ],
-    cloud: [
-      {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
-      },
-    ],
-  },
-  {
-    id: 2,
-    title: "B-tree Index Performance",
-    category: "Baseline",
-    difficulty: "Medium",
-    fullPrompt: `[DIFFICULTY: MEDIUM | BASELINE]
-Answer this technical question about database indexing:
-
-Topic: B-tree indexes in relational databases
-Question: A development team notices that a SELECT query on a 10-million-row table takes 45 seconds without an index and 0.02 seconds with one. Explain why indexes produce this performance difference and what trade-offs they introduce.
-
-Context: The database is PostgreSQL. The table has columns for user_id, email, created_at, and status. The slow query filters by email. The team is considering adding indexes to every column as a solution to all their slow queries.
-
-Respond with:
-Summary: explain the core reason for the speed difference in 1 sentence
-2. Key Indicators: exactly 3 bullet points on how B-tree indexes work
-3. Immediate Actions: exactly 3 bullet points advising the team on index strategy
-4. Prevention: exactly 2 bullet points on index maintenance and over-indexing risks`,
-    local: [
-      {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
-      },
-    ],
-    cloud: [
-      {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
-      },
-    ],
-  },
-  {
-    id: 3,
-    title: "CAP Theorem Trade-offs",
-    category: "Baseline",
-    difficulty: "Hard",
-    fullPrompt: `[DIFFICULTY: HARD | BASELINE]
-Answer this architecture question about distributed systems:
-
-Topic: CAP theorem trade-offs in distributed database design
-Question: An engineering team is designing a globally distributed database for an e-commerce platform. They need to choose between consistency, availability, and partition tolerance. The platform processes 50,000 orders per minute across five regions. Occasional duplicate orders are acceptable; failed checkouts are not.
-
-Context: The current system is a single-region PostgreSQL instance approaching its write limits. The team is evaluating Apache Cassandra, CockroachDB, and Amazon DynamoDB. Regulatory requirements mandate that EU customer data stays in EU regions. The team has strong SQL expertise but no NoSQL experience.
-
-Respond with:
-Summary: recommended CAP trade-off for this use case in 1 sentence
-2. Key Indicators: exactly 3 bullet points on why this trade-off fits the requirements
-3. Immediate Actions: exactly 3 bullet points on database selection and migration approach
-4. Prevention: exactly 2 bullet points on consistency pitfalls to design around`,
-    local: [
-      {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
-      },
-    ],
-    cloud: [
-      {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
-      },
-    ],
-  },
-
   // ── EMAIL SECURITY ─────────────────────────────────────────
   {
-    id: 4,
+    id: 1,
     title: "Obvious Phishing Email",
     category: "Email Security",
     difficulty: "Easy",
@@ -159,29 +33,61 @@ Respond with:
 4. Prevention: exactly 2 bullet points on avoiding similar attacks`,
     local: [
       {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
+        model: "LLaMA2-7B chat by Meta",
+        responseTime: "40.058",
+        inputTokens: 219.7,
         cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        custom: {
+          "CPU (%)": "9.122",
+          "RAM (MB)": "3142.065",
+          "Network (MB)": "0.218",
+          "Energy (kWh)": "0.171295",
+        },
       },
     ],
     cloud: [
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        model: "gpt-3.5-turbo by OpenAI",
+        responseTime: "3.0",
+        inputTokens: 100,
+        outputTokens: 200,
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00010200",
+          "Avg Energy (J) — 1 run": "367.2000",
+          "Avg Cost NZD — 1 run": "$0.000577",
+          "Total Power (W)": "122.4000"
+        },
+      },
+      {
+        model: "Gemini Pro by Google",
+        responseTime: "3.0",
+        inputTokens: 100,
+        outputTokens: 200,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00007200",
+          "Avg Energy (J) — 1 run": "259.2000",
+          "Avg Cost NZD — 1 run": "$0.000062",
+          "Total Power (W)": "86.4000"
+        },
+      },
+      {
+        model: "mistral-small by Mistral",
+        responseTime: "3.0",
+        inputTokens: 100,
+        outputTokens: 200,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00009000",
+          "Avg Energy (J) — 1 run": "324.0000",
+          "Avg Cost NZD — 1 run": "$0.000495",
+          "Total Power (W)": "108.0000"
+        },
       },
     ],
   },
   {
-    id: 5,
+    id: 2,
     title: "Sophisticated Internal Phishing",
     category: "Email Security",
     difficulty: "Medium",
@@ -202,29 +108,62 @@ Respond with:
 4. Prevention: exactly 2 bullet points on avoiding similar attacks`,
     local: [
       {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
+        model: "LLaMA2-7B chat by Meta",
+        responseTime: "40.6",
+        inputTokens: 220,
         cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        custom: {
+          "CPU (%)": "11.388",
+          "RAM (MB)": "3142.216",
+          "Network (MB)": "0.225",
+          "Energy (kWh)": "0.173450",
+        },
       },
     ],
     cloud: [
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        model: "gpt-3.5-turbo by OpenAI",
+        responseTime: "4.0",
+        inputTokens: 113,
+        outputTokens: 350,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00015742",
+          "Avg Energy (J) — 1 run": "566.7120",
+          "Avg Cost NZD — 1 run": "$0.000959",
+          "Total Power (W)": "141.6780"
+        },
+      },
+      {
+        model: "Gemini Pro by Google",
+        responseTime: "4.0",
+        inputTokens: 113,
+        outputTokens: 350,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00011112",
+          "Avg Energy (J) — 1 run": "400.0320",
+          "Avg Cost NZD — 1 run": "$0.000096",
+          "Total Power (W)": "100.0080"
+        },
+      },
+      {
+        model: "mistral-small by Mistral",
+        responseTime: "4.0",
+        inputTokens: 113,
+        outputTokens: 350,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00013890",
+          "Avg Energy (J) — 1 run": "500.0400",
+          "Avg Cost NZD — 1 run": "$0.000764",
+          "Total Power (W)": "125.0100"
+        },
       },
     ],
   },
   {
-    id: 6,
+    id: 3,
     title: "CEO Spear-Phishing / BEC",
     category: "Email Security",
     difficulty: "Hard",
@@ -246,29 +185,62 @@ Respond with:
 4. Prevention: exactly 2 bullet points on process controls to prevent BEC fraud`,
     local: [
       {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
+        model: "LLaMA2-7B chat by Meta",
+        responseTime: "40.607",
+        inputTokens: 220,
         cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        custom: {
+          "CPU (%)": "9.748",
+          "RAM (MB)": "3142.608",
+          "Network (MB)": "0.216",
+          "Energy (kWh)": "0.173539",
+        },
       },
     ],
     cloud: [
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        model: "gpt-3.5-turbo by OpenAI",
+        responseTime: "5.5",
+        inputTokens: 125,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00021250",
+          "Avg Energy (J) — 1 run": "765.0000",
+          "Avg Cost NZD — 1 run": "$0.001341",
+          "Total Power (W)": "139.0909"
+        },
+      },
+      {
+        model: "Gemini Pro by Google",
+        responseTime: "5.5",
+        inputTokens: 125,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00015000",
+          "Avg Energy (J) — 1 run": "540.0000",
+          "Avg Cost NZD — 1 run": "$0.000129",
+          "Total Power (W)": "98.1818"
+        },
+      },
+      {
+        model: "mistral-small by Mistral",
+        responseTime: "5.5",
+        inputTokens: 125,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00018750",
+          "Avg Energy (J) — 1 run": "675.0000",
+          "Avg Cost NZD — 1 run": "$0.001031",
+          "Total Power (W)": "122.7273"
+        },
       },
     ],
   },
   {
-    id: 7,
+    id: 4,
     title: "Malware Attachment Detection",
     category: "Email Security",
     difficulty: "Easy",
@@ -288,31 +260,63 @@ Respond with:
 4. Prevention: exactly 2 bullet points on email attachment policy controls`,
     local: [
       {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
+        model: "LLaMA2-7B chat by Meta",
+        responseTime: "40.478",
+        inputTokens: 219.45,
         cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        custom: {
+          "CPU (%)": "16.019",
+          "RAM (MB)": "3142.884",
+          "Network (MB)": "0.227",
+          "Energy (kWh)": "0.172856",
+        },
       },
     ],
     cloud: [
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        model: "gpt-3.5-turbo by OpenAI",
+        responseTime: "3.5",
+        inputTokens: 50,
+        outputTokens: 300,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00011900",
+          "Avg Energy (J) — 1 run": "428.4000",
+          "Avg Cost NZD — 1 run": "$0.000784",
+          "Total Power (W)": "122.4000"
+        },
+      },
+      {
+        model: "Gemini Pro by Google",
+        responseTime: "3.5",
+        inputTokens: 50,
+        outputTokens: 300,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00008400",
+          "Avg Energy (J) — 1 run": "302.4000",
+          "Avg Cost NZD — 1 run": "$0.000072",
+          "Total Power (W)": "86.4000"
+        },
+      },
+      {
+        model: "mistral-small by Mistral",
+        responseTime: "3.5",
+        inputTokens: 50,
+        outputTokens: 300,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00010500",
+          "Avg Energy (J) — 1 run": "378.0000",
+          "Avg Cost NZD — 1 run": "$0.000577",
+          "Total Power (W)": "108.0000"
+        },
       },
     ],
   },
-
   // ── THREAT DETECTION ───────────────────────────────────────
   {
-    id: 8,
+    id: 5,
     title: "Brute Force Login Logs",
     category: "Threat Detection",
     difficulty: "Easy",
@@ -336,29 +340,62 @@ Respond with:
 4. Prevention: exactly 2 bullet points on hardening authentication`,
     local: [
       {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
+        model: "LLaMA2-7B chat by Meta",
+        responseTime: "21.298",
+        inputTokens: 219.333,
         cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        custom: {
+          "CPU (%)": "23.142",
+          "RAM (MB)": "3483.484",
+          "Network (MB)": "0.162",
+          "Energy (kWh)": "0.09477",
+        },
       },
     ],
     cloud: [
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        model: "gpt-3.5-turbo by OpenAI",
+        responseTime: "4.0",
+        inputTokens: 95,
+        outputTokens: 350,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00015130",
+          "Avg Energy (J) — 1 run": "544.6800",
+          "Avg Cost NZD — 1 run": "$0.000945",
+          "Total Power (W)": "136.1700"
+        },
+      },
+      {
+        model: "Gemini Pro by Google",
+        responseTime: "4.0",
+        inputTokens: 95,
+        outputTokens: 350,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00010680",
+          "Avg Energy (J) — 1 run": "384.4800",
+          "Avg Cost NZD — 1 run": "$0.000092",
+          "Total Power (W)": "96.1200"
+        },
+      },
+      {
+        model: "mistral-small by Mistral",
+        responseTime: "4.0",
+        inputTokens: 95,
+        outputTokens: 350,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00013350",
+          "Avg Energy (J) — 1 run": "480.6000",
+          "Avg Cost NZD — 1 run": "$0.000734",
+          "Total Power (W)": "120.1500"
+        },
       },
     ],
   },
   {
-    id: 9,
+    id: 6,
     title: "Network Traffic Anomaly",
     category: "Threat Detection",
     difficulty: "Medium",
@@ -386,29 +423,62 @@ Respond with:
 4. Prevention: exactly 2 bullet points on network controls`,
     local: [
       {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
+        model: "LLaMA2-7B chat by Meta",
+        responseTime: "33.719",
+        inputTokens: 220,
         cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        custom: {
+          "CPU (%)": "9.188",
+          "RAM (MB)": "3484.22",
+          "Network (MB)": "0.201",
+          "Energy (kWh)": "0.145772",
+        },
       },
     ],
     cloud: [
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        model: "gpt-3.5-turbo by OpenAI",
+        responseTime: "5.5",
+        inputTokens: 90,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00020060",
+          "Avg Energy (J) — 1 run": "722.1600",
+          "Avg Cost NZD — 1 run": "$0.001312",
+          "Total Power (W)": "131.3018"
+        },
+      },
+      {
+        model: "Gemini Pro by Google",
+        responseTime: "5.5",
+        inputTokens: 90,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00014160",
+          "Avg Energy (J) — 1 run": "509.7600",
+          "Avg Cost NZD — 1 run": "$0.000122",
+          "Total Power (W)": "92.6836"
+        },
+      },
+      {
+        model: "mistral-small by Mistral",
+        responseTime: "5.5",
+        inputTokens: 90,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00017700",
+          "Avg Energy (J) — 1 run": "637.2000",
+          "Avg Cost NZD — 1 run": "$0.000974",
+          "Total Power (W)": "115.8545"
+        },
       },
     ],
   },
   {
-    id: 10,
+    id: 7,
     title: "Malware Process Behaviour",
     category: "Threat Detection",
     difficulty: "Medium",
@@ -416,16 +486,16 @@ Respond with:
 Analyse this process behaviour for malware indicators:
 
 Process: svchost.exe (PID: 8472)
-Location: C:\\Users\\John\\AppData\\Local\\Temp\\svchost.exe
+Location: C:\Users\John\AppData\Local\Temp\svchost.exe
 Parent Process: outlook.exe
 Network: Beacon to 23.95.67.142:443 every 30 seconds
 File Activity:
-  Created: C:\\Users\\John\\Documents.hidden\\keylog.txt
-  Modified: HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run
+  Created: C:\Users\John\Documents.hidden\keylog.txt
+  Modified: HKCU\Software\Microsoft\Windows\CurrentVersion\Run
   Accessed: Chrome password store, Firefox login database
 CPU/RAM: 2% CPU, 45 MB (stable)
 
-Context: Legitimate svchost.exe runs only from C:\\Windows\\System32\\ and is never spawned by outlook.exe. The destination IP has no business association. The registry key modified controls Windows startup persistence.
+Context: Legitimate svchost.exe runs only from C:\Windows\System32\ and is never spawned by outlook.exe. The destination IP has no business association. The registry key modified controls Windows startup persistence.
 
 Respond with:
 1. Assessment: malware type and risk level (1 sentence)
@@ -434,29 +504,62 @@ Respond with:
 4. Prevention: exactly 2 bullet points on endpoint hardening`,
     local: [
       {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
+        model: "LLaMA2-7B chat by Meta",
+        responseTime: "35.388",
+        inputTokens: 218.13,
         cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        custom: {
+          "CPU (%)": "3.278",
+          "RAM (MB)": "3484.667",
+          "Network (MB)": "0.21",
+          "Energy (kWh)": "0.152336",
+        },
       },
     ],
     cloud: [
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        model: "gpt-3.5-turbo by OpenAI",
+        responseTime: "6.0",
+        inputTokens: 113,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00020842",
+          "Avg Energy (J) — 1 run": "750.3120",
+          "Avg Cost NZD — 1 run": "$0.001331",
+          "Total Power (W)": "125.0520"
+        },
+      },
+      {
+        model: "Gemini Pro by Google",
+        responseTime: "6.0",
+        inputTokens: 113,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00014712",
+          "Avg Energy (J) — 1 run": "529.6320",
+          "Avg Cost NZD — 1 run": "$0.000126",
+          "Total Power (W)": "88.2720"
+        },
+      },
+      {
+        model: "mistral-small by Mistral",
+        responseTime: "6.0",
+        inputTokens: 113,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00018390",
+          "Avg Energy (J) — 1 run": "662.0400",
+          "Avg Cost NZD — 1 run": "$0.001012",
+          "Total Power (W)": "110.3400"
+        },
       },
     ],
   },
   {
-    id: 11,
+    id: 8,
     title: "Insider Threat — Departing Employee",
     category: "Threat Detection",
     difficulty: "Hard",
@@ -484,31 +587,63 @@ Respond with:
 4. Prevention: exactly 2 bullet points on offboarding access controls`,
     local: [
       {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
+        model: "LLaMA2-7B chat by Meta",
+        responseTime: "24.819",
+        inputTokens: 214.833,
         cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        custom: {
+          "CPU (%)": "14.204",
+          "RAM (MB)": "3073.366",
+          "Network (MB)": "0.177",
+          "Energy (kWh)": "0.212863",
+        },
       },
     ],
     cloud: [
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        model: "gpt-3.5-turbo by OpenAI",
+        responseTime: "6.0",
+        inputTokens: 108,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00020672",
+          "Avg Energy (J) — 1 run": "744.1920",
+          "Avg Cost NZD — 1 run": "$0.001327",
+          "Total Power (W)": "124.0320"
+        },
+      },
+      {
+        model: "Gemini Pro by Google",
+        responseTime: "6.0",
+        inputTokens: 108,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00014592",
+          "Avg Energy (J) — 1 run": "525.3120",
+          "Avg Cost NZD — 1 run": "$0.000125",
+          "Total Power (W)": "87.5520"
+        },
+      },
+      {
+        model: "mistral-small by Mistral",
+        responseTime: "6.0",
+        inputTokens: 108,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00018240",
+          "Avg Energy (J) — 1 run": "656.6400",
+          "Avg Cost NZD — 1 run": "$0.001003",
+          "Total Power (W)": "109.4400"
+        },
       },
     ],
   },
-
   // ── VULNERABILITY ASSESSMENT ───────────────────────────────
   {
-    id: 12,
+    id: 9,
     title: "SQL Injection in User Lookup",
     category: "Vulnerability Assessment",
     difficulty: "Easy",
@@ -536,29 +671,62 @@ Respond with:
 4. Prevention: exactly 2 bullet points on secure coding practices`,
     local: [
       {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
+        model: "LLaMA2-7B chat by Meta",
+        responseTime: "15.539",
+        inputTokens: 220,
         cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.2" },
+        custom: {
+          "CPU (%)": "18.165",
+          "RAM (MB)": "2468.836",
+          "Network (MB)": "0.142",
+          "Energy (kWh)": "0.147024",
+        },
       },
     ],
     cloud: [
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.2" },
+        model: "gpt-3.5-turbo by OpenAI",
+        responseTime: "4.0",
+        inputTokens: 70,
+        outputTokens: 350,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00014280",
+          "Avg Energy (J) — 1 run": "514.0800",
+          "Avg Cost NZD — 1 run": "$0.000924",
+          "Total Power (W)": "128.5200"
+        },
+      },
+      {
+        model: "Gemini Pro by Google",
+        responseTime: "4.0",
+        inputTokens: 70,
+        outputTokens: 350,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00010080",
+          "Avg Energy (J) — 1 run": "362.8800",
+          "Avg Cost NZD — 1 run": "$0.000087",
+          "Total Power (W)": "90.7200"
+        },
+      },
+      {
+        model: "mistral-small by Mistral",
+        responseTime: "4.0",
+        inputTokens: 70,
+        outputTokens: 350,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00012600",
+          "Avg Energy (J) — 1 run": "453.6000",
+          "Avg Cost NZD — 1 run": "$0.000693",
+          "Total Power (W)": "113.4000"
+        },
       },
     ],
   },
   {
-    id: 13,
+    id: 10,
     title: "XSS in Flask Search Route",
     category: "Vulnerability Assessment",
     difficulty: "Medium",
@@ -572,7 +740,7 @@ def search():
     html = f'''
 <h1>Search Results for: {query}</h1>
 <div>Found {len(results)} results</div>
-<ul>{''.join([f'<li>{result}</li>' for result in results])}</ul>
+<ul>{'''join([f'<li>{result}</li>' for result in results])}</ul>
 '''
     return render_template_string(html)
 
@@ -585,29 +753,62 @@ Respond with:
 4. Prevention: exactly 2 bullet points on output encoding practices`,
     local: [
       {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
+        model: "LLaMA2-7B chat by Meta",
+        responseTime: "13.928",
+        inputTokens: 220,
         cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.2" },
+        custom: {
+          "CPU (%)": "8.656",
+          "RAM (MB)": "2469.527",
+          "Network (MB)": "0.138",
+          "Energy (kWh)": "0.132364",
+        },
       },
     ],
     cloud: [
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.2" },
+        model: "gpt-3.5-turbo by OpenAI",
+        responseTime: "4.0",
+        inputTokens: 80,
+        outputTokens: 350,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00014620",
+          "Avg Energy (J) — 1 run": "526.3200",
+          "Avg Cost NZD — 1 run": "$0.000932",
+          "Total Power (W)": "131.5800"
+        },
+      },
+      {
+        model: "Gemini Pro by Google",
+        responseTime: "4.0",
+        inputTokens: 80,
+        outputTokens: 350,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00010320",
+          "Avg Energy (J) — 1 run": "371.5200",
+          "Avg Cost NZD — 1 run": "$0.000089",                
+          "Total Power (W)": "92.8800"
+        },
+      },
+      {
+        model: "mistral-small by Mistral",
+        responseTime: "4.0",
+        inputTokens: 80,
+        outputTokens: 350,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00012900",
+          "Avg Energy (J) — 1 run": "464.4000",
+          "Avg Cost NZD — 1 run": "$0.000709",
+          "Total Power (W)": "116.1000"
+        },
       },
     ],
   },
   {
-    id: 14,
+    id: 11,
     title: "API Authentication Bypass",
     category: "Vulnerability Assessment",
     difficulty: "Medium",
@@ -635,29 +836,62 @@ Respond with:
 4. Prevention: exactly 2 bullet points on API authentication best practices`,
     local: [
       {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
+        model: "LLaMA2-7B chat by Meta",
+        responseTime: "15.429",
+        inputTokens: 220,
         cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.2" },
+        custom: {
+          "CPU (%)": "28.518",
+          "RAM (MB)": "2469.922",
+          "Network (MB)": "0.151",
+          "Energy (kWh)": "0.145386",
+        },
       },
     ],
     cloud: [
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.2" },
+        model: "gpt-3.5-turbo by OpenAI",
+        responseTime: "5.5",
+        inputTokens: 88,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00019992",
+          "Avg Energy (J) — 1 run": "719.7120",
+          "Avg Cost NZD — 1 run": "$0.001310",
+          "Total Power (W)": "130.8567"
+        },
+      },
+      {
+        model: "Gemini Pro by Google",
+        responseTime: "5.5",
+        inputTokens: 88,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00014112",
+          "Avg Energy (J) — 1 run": "508.0320",
+          "Avg Cost NZD — 1 run": "$0.000121",
+          "Total Power (W)": "92.3695"
+        },
+      },
+      {
+        model: "mistral-small by Mistral",
+        responseTime: "5.5",
+        inputTokens: 88,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00017640",
+          "Avg Energy (J) — 1 run": "635.0400",
+          "Avg Cost NZD — 1 run": "$0.000970",
+          "Total Power (W)": "115.4618"
+        },
       },
     ],
   },
   {
-    id: 15,
+    id: 12,
     title: "npm Dependency CVE Prioritisation",
     category: "Vulnerability Assessment",
     difficulty: "Hard",
@@ -683,31 +917,63 @@ Respond with:
 4. Prevention: exactly 2 bullet points on dependency management process`,
     local: [
       {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
+        model: "LLaMA2-7B chat by Meta",
+        responseTime: "14.773",
+        inputTokens: 218.88,
         cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.2" },
+        custom: {
+          "CPU (%)": "14.194",
+          "RAM (MB)": "2470.18",
+          "Network (MB)": "0.144",
+          "Energy (kWh)": "0.14008",
+        },
       },
     ],
     cloud: [
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.2" },
+        model: "gpt-3.5-turbo by OpenAI",
+        responseTime: "4.0",
+        inputTokens: 73,
+        outputTokens: 350,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00014382",
+          "Avg Energy (J) — 1 run": "517.7520",
+          "Avg Cost NZD — 1 run": "$0.000927",
+          "Total Power (W)": "129.4380"
+        },
+      },
+      {
+        model: "Gemini Pro by Google",
+        responseTime: "4.0",
+        inputTokens: 73,
+        outputTokens: 350,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00010152",
+          "Avg Energy (J) — 1 run": "365.4720",
+          "Avg Cost NZD — 1 run": "$0.000087", 
+          "Total Power (W)": "91.3680"
+        },
+      },
+      {
+        model: "mistral-small by Mistral",
+        responseTime: "4.0",
+        inputTokens: 73,
+        outputTokens: 350,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00012690",
+          "Avg Energy (J) — 1 run": "456.8400",
+          "Avg Cost NZD — 1 run": "$0.000698",
+          "Total Power (W)": "114.2100"
+        },
       },
     ],
   },
-
   // ── COMPLIANCE ─────────────────────────────────────────────
   {
-    id: 16,
+    id: 13,
     title: "Plaintext PII in Public S3 Bucket",
     category: "Compliance",
     difficulty: "Easy",
@@ -736,29 +1002,62 @@ Respond with:
 4. Prevention: exactly 2 bullet points on data classification policy controls`,
     local: [
       {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
+        model: "LLaMA2-7B chat by Meta",
+        responseTime: "20.577",
+        inputTokens: 220,
         cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        custom: {
+          "CPU (%)": "8.819",
+          "RAM (MB)": "2470.567",
+          "Network (MB)": "0.171",
+          "Energy (kWh)": "0.191698",
+        },
       },
     ],
     cloud: [
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        model: "gpt-3.5-turbo by OpenAI",
+        responseTime: "5.5",
+        inputTokens: 80,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00019720",
+          "Avg Energy (J) — 1 run": "709.9200",
+          "Avg Cost NZD — 1 run": "$0.001303",
+          "Total Power (W)": "129.0764"
+        },
+      },
+      {
+        model: "Gemini Pro by Google",
+        responseTime: "5.5",
+        inputTokens: 80,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00013920",
+          "Avg Energy (J) — 1 run": "501.1200",
+          "Avg Cost NZD — 1 run": "$0.000120",
+          "Total Power (W)": "91.1127"
+        },
+      },
+      {
+        model: "mistral-small by Mistral",
+        responseTime: "5.5",
+        inputTokens: 80,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00017400",
+          "Avg Energy (J) — 1 run": "626.4000",
+          "Avg Cost NZD — 1 run": "$0.000957",
+          "Total Power (W)": "113.8909"
+        },
       },
     ],
   },
   {
-    id: 17,
+    id: 14,
     title: "Over-Privileged AWS IAM User",
     category: "Compliance",
     difficulty: "Medium",
@@ -784,29 +1083,62 @@ Respond with:
 4. Prevention: exactly 2 bullet points on IAM governance process`,
     local: [
       {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
+        model: "LLaMA2-7B chat by Meta",
+        responseTime: "21.455",
+        inputTokens: 220,
         cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        custom: {
+          "CPU (%)": "6.276",
+          "RAM (MB)": "2470.97",
+          "Network (MB)": "0.175",
+          "Energy (kWh)": "0.199045",
+        },
       },
     ],
     cloud: [
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        model: "gpt-3.5-turbo by OpenAI",
+        responseTime: "4.0",
+        inputTokens: 65,
+        outputTokens: 300,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00012410",
+          "Avg Energy (J) — 1 run": "446.7600",
+          "Avg Cost NZD — 1 run": "$0.000796",
+          "Total Power (W)": "111.6900"
+        },
+      },
+      {
+        model: "Gemini Pro by Google",
+        responseTime: "4.0",
+        inputTokens: 65,
+        outputTokens: 300,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00008760",
+          "Avg Energy (J) — 1 run": "315.3600",
+          "Avg Cost NZD — 1 run": "$0.000075",
+          "Total Power (W)": "78.8400"
+        },
+      },
+      {
+        model: "mistral-small by Mistral",
+        responseTime: "4.0",
+        inputTokens: 65,
+        outputTokens: 300,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00010950",
+          "Avg Energy (J) — 1 run": "394.2000",
+          "Avg Cost NZD — 1 run": "$0.000602",
+          "Total Power (W)": "98.5500"
+        },
       },
     ],
   },
   {
-    id: 18,
+    id: 15,
     title: "HIPAA Cloud Misconfiguration",
     category: "Compliance",
     difficulty: "Hard",
@@ -814,16 +1146,16 @@ Respond with:
 Identify critical misconfigurations in this HIPAA-regulated cloud environment:
 
 AWS EC2: production-web-server (stores patient health records)
-Security Group: 0.0.0.0/0 on port 22 (SSH open to internet)
-Security Group: 0.0.0.0/0 on port 3306 (MySQL open to internet)
-IAM Role: AdministratorAccess policy attached
-OS: Ubuntu 18.04 (end-of-life, unpatched since April 2023)
-SSH: root login enabled
-MySQL: default credentials in use
-EBS: unencrypted
-CloudTrail: disabled
-VPC Flow Logs: disabled
-Backups: none configured
+- Security Group: 0.0.0.0/0 on port 22 (SSH open to internet)
+- Security Group: 0.0.0.0/0 on port 3306 (MySQL open to internet)
+- IAM Role: AdministratorAccess policy attached
+- OS: Ubuntu 18.04 (end-of-life, unpatched since April 2023)
+- SSH: root login enabled
+- MySQL: default credentials in use
+- EBS: unencrypted
+- CloudTrail: disabled
+- VPC Flow Logs: disabled
+- Backups: none configured
 
 Context: This server is production, internet-facing, and holds PHI under HIPAA. AdministratorAccess on EC2 means a compromised instance owns the entire AWS account. Disabled logging means a breach may already be undetected.
 
@@ -834,31 +1166,63 @@ Respond with:
 4. Prevention: exactly 2 bullet points on cloud security posture management`,
     local: [
       {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
+        model: "LLaMA2-7B chat by Meta",
+        responseTime: "20.225",
+        inputTokens: 220,
         cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        custom: {
+          "CPU (%)": "5.624",
+          "RAM (MB)": "2471.326",
+          "Network (MB)": "0.173",
+          "Energy (kWh)": "0.188778",
+        },
       },
     ],
     cloud: [
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        model: "gpt-3.5-turbo by OpenAI",
+        responseTime: "5.5",
+        inputTokens: 88,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00019992",
+          "Avg Energy (J) — 1 run": "719.7120",
+          "Avg Cost NZD — 1 run": "$0.001310",
+          "Total Power (W)": "130.8567"
+        },
+      },
+      {
+        model: "Gemini Pro by Google",
+        responseTime: "5.5",
+        inputTokens: 88,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00014112",
+          "Avg Energy (J) — 1 run": "508.0320",
+          "Avg Cost NZD — 1 run": "$0.000121",
+          "Total Power (W)": "92.3695"
+        }
+      },
+      {
+        model: "mistral-small by Mistral",
+        responseTime: "5.5",
+        inputTokens: 88,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00017640",
+          "Avg Energy (J) — 1 run": "635.0400",
+          "Avg Cost NZD — 1 run": "$0.000970",
+          "Total Power (W)": "115.4618"
+        },
       },
     ],
   },
-
   // ── INCIDENT RESPONSE ──────────────────────────────────────
   {
-    id: 19,
+    id: 16,
     title: "Ransomware Outbreak Timeline",
     category: "Incident Response",
     difficulty: "Medium",
@@ -882,29 +1246,62 @@ Respond with:
 4. Prevention: exactly 2 bullet points on backup and email gateway controls`,
     local: [
       {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
+        model: "LLaMA2-7B chat by Meta",
+        responseTime: "19.889",
+        inputTokens: 220,
         cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        custom: {
+          "CPU (%)": "7.559",
+          "RAM (MB)": "2471.627",
+          "Network (MB)": "0.168",
+          "Energy (kWh)": "0.185877",
+        },
       },
     ],
     cloud: [
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        model: "gpt-3.5-turbo by OpenAI",
+        responseTime: "8.0",
+        inputTokens: 103,
+        outputTokens: 700,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00027302",
+          "Avg Energy (J) — 1 run": "982.8720",
+          "Avg Cost NZD — 1 run": "$0.001818",
+          "Total Power (W)": "122.8590"
+        },
+      },
+      {
+        model: "Gemini Pro by Google",
+        responseTime: "8.0",
+        inputTokens: 103,
+        outputTokens: 700,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00019272",
+          "Avg Energy (J) — 1 run": "693.7920",
+          "Avg Cost NZD — 1 run": "$0.000166",
+          "Total Power (W)": "86.7240"
+        },
+      },
+      {
+        model: "mistral-small by Mistral",
+        responseTime: "8.0",
+        inputTokens: 103,
+        outputTokens: 700,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00024090",
+          "Avg Energy (J) — 1 run": "867.2400",
+          "Avg Cost NZD — 1 run": "$0.001325",
+          "Total Power (W)": "108.4050"
+        },
       },
     ],
   },
   {
-    id: 20,
+    id: 17,
     title: "AWS GuardDuty S3 Exfiltration Alert",
     category: "Incident Response",
     difficulty: "Hard",
@@ -928,29 +1325,62 @@ Respond with:
 4. Prevention: exactly 2 bullet points on secrets management and bucket controls`,
     local: [
       {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
+        model: "LLaMA2-7B chat by Meta",
+        responseTime: "21.287",
+        inputTokens: 220,
         cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        custom: {
+          "CPU (%)": "8.798",
+          "RAM (MB)": "2471.921",
+          "Network (MB)": "0.173",
+          "Energy (kWh)": "0.198463",
+        },
       },
     ],
     cloud: [
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        model: "gpt-3.5-turbo by OpenAI",
+        responseTime: "8.0",
+        inputTokens: 80,
+        outputTokens: 700,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00026520",
+          "Avg Energy (J) — 1 run": "954.7200",
+          "Avg Cost NZD — 1 run": "$0.001799",
+          "Total Power (W)": "119.3400"
+        },
+      },
+      {
+        model: "Gemini Pro by Google",
+        responseTime: "8.0",
+        inputTokens: 80,
+        outputTokens: 700,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00018720",
+          "Avg Energy (J) — 1 run": "673.9200",
+          "Avg Cost NZD — 1 run": "$0.000161",
+          "Total Power (W)": "84.2400"
+        },
+      },
+      {
+        model: "mistral-small by Mistral",
+        responseTime: "8.0",
+        inputTokens: 80,
+        outputTokens: 700,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00023400",
+          "Avg Energy (J) — 1 run": "842.4000",
+          "Avg Cost NZD — 1 run": "$0.001287",
+          "Total Power (W)": "105.3000"
+        },
       },
     ],
   },
   {
-    id: 21,
+    id: 18,
     title: "30-Day APT Campaign",
     category: "Incident Response",
     difficulty: "Hard",
@@ -971,31 +1401,63 @@ Respond with:
 4. Prevention: exactly 2 bullet points on detection and hunting controls`,
     local: [
       {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
+        model: "LLaMA2-7B chat by Meta",
+        responseTime: "19.221",
+        inputTokens: 219.467,
         cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        custom: {
+          "CPU (%)": "9.677",
+          "RAM (MB)": "2472.139",
+          "Network (MB)": "0.169",
+          "Energy (kWh)": "0.179831",
+        },
       },
     ],
     cloud: [
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        model: "gpt-3.5-turbo by OpenAI",
+        responseTime: "8.0",
+        inputTokens: 85,
+        outputTokens: 700,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00026690",
+          "Avg Energy (J) — 1 run": "960.8400",
+          "Avg Cost NZD — 1 run": "$0.001803",
+          "Total Power (W)": "120.1050"
+        },
+      },
+      {
+        model: "Gemini Pro by Google",
+        responseTime: "8.0",
+        inputTokens: 85,
+        outputTokens: 700,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00018840",
+          "Avg Energy (J) — 1 run": "678.2400",
+          "Avg Cost NZD — 1 run": "$0.000162",
+          "Total Power (W)": "84.7800"
+        },
+      },
+      {
+        model: "mistral-small by Mistral",
+        responseTime: "8.0",
+        inputTokens: 85,
+        outputTokens: 700,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00023550",
+          "Avg Energy (J) — 1 run": "847.8000",
+          "Avg Cost NZD — 1 run": "$0.001295",
+          "Total Power (W)": "105.9750"
+        },
       },
     ],
   },
-
   // ── SOC OPERATIONS ─────────────────────────────────────────
   {
-    id: 22,
+    id: 19,
     title: "Account Takeover SIEM Alert",
     category: "SOC Operations",
     difficulty: "Medium",
@@ -1022,29 +1484,62 @@ Respond with:
 4. Prevention: exactly 2 bullet points on account takeover controls`,
     local: [
       {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
+        model: "LLaMA2-7B chat by Meta",
+        responseTime: "19.374",
+        inputTokens: 217.78,
         cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        custom: {
+          "CPU (%)": "7.988",
+          "RAM (MB)": "2472.512",
+          "Network (MB)": "0.717",
+          "Energy (kWh)": "0.181198",
+        },
       },
     ],
     cloud: [
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        model: "gpt-3.5-turbo by OpenAI",
+        responseTime: "4.0",
+        inputTokens: 95,
+        outputTokens: 350,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00015130",
+          "Avg Energy (J) — 1 run": "544.6800",
+          "Avg Cost NZD — 1 run": "$0.000945",
+          "Total Power (W)": "136.1700"
+        },
+      },
+      {
+        model: "Gemini Pro by Google",
+        responseTime: "4.0",
+        inputTokens: 95,
+        outputTokens: 350,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00010680",
+          "Avg Energy (J) — 1 run": "384.4800",
+          "Avg Cost NZD — 1 run": "$0.000092",
+          "Total Power (W)": "96.1200"
+        },
+      },
+      {
+        model: "mistral-small by Mistral",
+        responseTime: "4.0",
+        inputTokens: 95,
+        outputTokens: 350,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00013350",
+          "Avg Energy (J) — 1 run": "480.6000",
+          "Avg Cost NZD — 1 run": "$0.000734",
+          "Total Power (W)": "120.1500"
+        },
       },
     ],
   },
   {
-    id: 23,
+    id: 20,
     title: "Unusual Outbound Upload Volume",
     category: "SOC Operations",
     difficulty: "Medium",
@@ -1070,29 +1565,62 @@ Respond with:
 4. Prevention: exactly 2 bullet points on DLP and egress filtering controls`,
     local: [
       {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
+        model: "LLaMA2-7B chat by Meta",
+        responseTime: "13.749",
+        inputTokens: 211.707,
         cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        custom: {
+          "CPU (%)": "7.773",
+          "RAM (MB)": "2472.87",
+          "Network (MB)": "0.142",
+          "Energy (kWh)": "0.132996",
+        },
       },
     ],
     cloud: [
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        model: "gpt-3.5-turbo by OpenAI",
+        responseTime: "3.5",
+        inputTokens: 73,
+        outputTokens: 300,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00012682",
+          "Avg Energy (J) — 1 run": "456.5520",
+          "Avg Cost NZD — 1 run": "$0.000803",
+          "Total Power (W)": "130.4434"
+        },
+      },
+      {
+        model: "Gemini Pro by Google",
+        responseTime: "3.5",
+        inputTokens: 73,
+        outputTokens: 300,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00008952",
+          "Avg Energy (J) — 1 run": "322.2720",
+          "Avg Cost NZD — 1 run": "$0.000077",
+          "Total Power (W)": "92.0777"
+        },
+      },
+      {
+        model: "mistral-small by Mistral",
+        responseTime: "3.5",
+        inputTokens: 73,
+        outputTokens: 300,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00011190",
+          "Avg Energy (J) — 1 run": "402.8400",
+          "Avg Cost NZD — 1 run": "$0.000615",
+          "Total Power (W)": "115.0971"
+        },
       },
     ],
   },
   {
-    id: 24,
+    id: 21,
     title: "WAF False Positive — QA Testing",
     category: "SOC Operations",
     difficulty: "Easy",
@@ -1120,31 +1648,63 @@ Respond with:
 4. Prevention: exactly 2 bullet points on reducing false positives from authorised testing`,
     local: [
       {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
+        model: "LLaMA2-7B chat by Meta",
+        responseTime: "13.788",
+        inputTokens: 215.8,
         cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        custom: {
+          "CPU (%)": "13.93",
+          "RAM (MB)": "2473.1",
+          "Network (MB)": "0.142",
+          "Energy (kWh)": "0.131109",
+        },
       },
     ],
     cloud: [
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        model: "gpt-3.5-turbo by OpenAI",
+        responseTime: "2.5",
+        inputTokens: 73,
+        outputTokens: 200,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00009282",
+          "Avg Energy (J) — 1 run": "334.1520",
+          "Avg Cost NZD — 1 run": "$0.000555",
+          "Total Power (W)": "133.6608",
+        },
+      },
+      {
+        model: "Gemini Pro by Google",
+        responseTime: "2.5",
+        inputTokens: 73,
+        outputTokens: 200,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00006552",
+          "Avg Energy (J) — 1 run": "235.8720",
+          "Avg Cost NZD — 1 run": "$0.000056",
+          "Total Power (W)": "94.3488"
+        },
+      },
+      {
+        model: "mistral-small by Mistral",
+        responseTime: "2.5",
+        inputTokens: 73,
+        outputTokens: 200,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00008190",
+          "Avg Energy (J) — 1 run": "294.8400",
+          "Avg Cost NZD — 1 run": "$0.000451",
+          "Total Power (W)": "117.9360"
+        },
       },
     ],
   },
-
   // ── THREAT INTELLIGENCE ────────────────────────────────────
   {
-    id: 25,
+    id: 22,
     title: "APT29 SolarWinds IOC Match",
     category: "Threat Intelligence",
     difficulty: "Hard",
@@ -1172,38 +1732,62 @@ Respond with:
 4. Prevention: exactly 2 bullet points on supply chain and IOC monitoring controls`,
     local: [
       {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
+        model: "LLaMA2-7B chat by Meta",
+        responseTime: "14.125",
+        inputTokens: 220,
         cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        custom: {
+          "CPU (%)": "9.888",
+          "RAM (MB)": "2473.369",
+          "Network (MB)": "0.137",
+          "Energy (kWh)": "0.134109",
+        },
       },
     ],
     cloud: [
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        model: "gpt-3.5-turbo by OpenAI",
+        responseTime: "6.0",
+        inputTokens: 90,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00020060",
+          "Avg Energy (J) — 1 run": "722.1600",
+          "Avg Cost NZD — 1 run": "$0.001312",
+          "Total Power (W)": "120.3600"
+        },
       },
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
-      }
+        model: "Gemini Pro by Google",
+        responseTime: "6.0",
+        inputTokens: 90,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00014160",
+          "Avg Energy (J) — 1 run": "509.7600",
+          "Avg Cost NZD — 1 run": "$0.000122",
+          "Total Power (W)": "84.9600"
+        },
+      },
+      {
+        model: "mistral-small by Mistral",
+        responseTime: "6.0",
+        inputTokens: 90,
+        outputTokens: 500,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00017700",
+          "Avg Energy (J) — 1 run": "637.2000",
+          "Avg Cost NZD — 1 run": "$0.000974",
+          "Total Power (W)": "106.2000"
+        },
+      },
     ],
   },
   {
-    id: 26,
+    id: 23,
     title: "Dark Web Credential Listing",
     category: "Threat Intelligence",
     difficulty: "Hard",
@@ -1231,28 +1815,57 @@ Respond with:
 4. Prevention: exactly 2 bullet points on credential exposure monitoring`,
     local: [
       {
-        model: "LOCALMODEL",
-        responseTime: "Xs",
-        tokens: 0,
+        model: "LLaMA2-7B chat by Meta",
+        responseTime: "19.869",
+        inputTokens: 219.84,
         cost: "$0.00",
-        rating: "Good",
-        explanation: "Add your quality assessment here.",
-        custom: { 
-          "Temperature": "0.7" ,
-          "GPU" : "bleh",
-          "hello" : "world",  
-        }        
+        custom: {
+          "CPU (%)": "10.954",
+          "RAM (MB)": "3072.692",
+          "Network (MB)": "0.155",
+          "Energy (kWh)": "0.173521",
+        },
       },
     ],
     cloud: [
       {
-        model: "CLOUDMODEL",
-        responseTime: "Xs",
-        tokens: 0,
-        cost: "$0.00",
-        rating: "Excellent",
-        explanation: "Add your quality assessment here.",
-        custom: { "Temperature": "0.7" },
+        model: "gpt-3.5-turbo by OpenAI",
+        responseTime: "8.0",
+        inputTokens: 90,
+        outputTokens: 700,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00026860",
+          "Avg Energy (J) — 1 run": "966.9600",
+          "Avg Cost NZD — 1 run": "$0.001807",
+          "Total Power (W)": "120.8700"
+        },
+      },
+      {
+        model: "Gemini Pro by Google",
+        responseTime: "8.0",
+        inputTokens: 90,
+        outputTokens: 700,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00018960",
+          "Avg Energy (J) — 1 run": "682.5600",
+          "Avg Cost NZD — 1 run": "$0.000163",
+          "Total Power (W)": "85.3200"
+        },
+      },
+      {
+        model: "mistral-small by Mistral",
+        responseTime: "8.0",
+        inputTokens: 90,
+        outputTokens: 700,
+
+        custom: {
+          "Avg Energy (kWh) — 1 run": "0.00023700",
+          "Avg Energy (J) — 1 run": "853.2000",
+          "Avg Cost NZD — 1 run": "$0.001303",
+          "Total Power (W)": "106.6500"
+        },
       },
     ],
   },

@@ -287,3 +287,271 @@
     border-bottom: 1px solid var(--border);
   }
 }
+
+/* ── Featured Scenario Section ───────────────────────────────────────────── */
+.featuredSection {
+  padding: 6rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.featuredHeader {
+  max-width: 640px;
+  margin-bottom: 2.5rem;
+}
+
+.featuredSub {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-top: 0.75rem;
+}
+
+.scenarioCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.scenarioCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  background: var(--bg-card-hover);
+}
+
+.scenarioMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.scenarioNum {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--accent);
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
+}
+
+.scenarioTitle {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.scenarioBadges {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.diffHard {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 10px;
+  background: rgba(239,68,68,0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239,68,68,0.25);
+}
+
+.catBadge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 0.2rem 0.6rem;
+  border-radius: 10px;
+}
+
+.promptToggleWrap {
+  border-bottom: 1px solid var(--border);
+}
+
+.promptToggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: background 0.2s, color 0.2s;
+}
+
+.promptToggle:hover {
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+.promptToggleLabel {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.promptChevron {
+  font-size: 1rem;
+  transition: transform 0.25s ease;
+  display: inline-block;
+}
+
+.promptChevronOpen {
+  transform: rotate(180deg);
+}
+
+.promptText {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  padding: 1.25rem 1.5rem;
+}
+
+.resultsWrap {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.resultsLabel {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-subtle);
+  margin-bottom: 1rem;
+}
+
+.tableScroll {
+  overflow-x: auto;
+}
+
+.resultsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  min-width: 560px;
+}
+
+.resultsTable th {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-subtle);
+  text-align: left;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-card-hover);
+  white-space: nowrap;
+}
+
+.resultsTable td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.resultsTable tr:last-child td { border-bottom: none; }
+
+.resultsTable tr:hover td {
+  background: var(--accent-dim);
+  color: var(--text);
+}
+
+.bestRow td { background: rgba(0,229,255,0.04); }
+[data-theme="light"] .bestRow td { background: rgba(0,110,153,0.04); }
+
+.modelName {
+  font-weight: 500;
+  color: var(--text);
+  margin-right: 0.5rem;
+}
+
+.bestBadge {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+  background: var(--accent-dim);
+  color: var(--accent);
+  border: 1px solid var(--border-accent);
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+}
+
+.typeCloud { color: #a78bfa; }
+.typeLocal { color: var(--accent); }
+.slowVal { color: #ef4444 !important; }
+
+.takeawaysWrap { padding: 1.25rem 1.5rem; }
+
+.takeawaysGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.takeawayCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: var(--bg-card-hover);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  transition: border-color 0.2s;
+}
+
+.takeawayCard:hover { border-color: var(--border-accent); }
+
+.takeawayIcon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.takeawayText {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.takeawayText strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.featuredCta {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 700px) {
+  .takeawaysGrid { grid-template-columns: 1fr; }
+  .scenarioCardHeader { flex-direction: column; align-items: flex-start; }
+}
