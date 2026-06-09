@@ -6,7 +6,7 @@ const TEAM = [
     initials: 'RM',
     name: 'Rochelle Mitchell',
     studentID: '21141960',
-    role: 'Project Lead',
+    role: 'Team Lead',
     bio: 'Cybersecurity and Networks Student'
   },
   {
@@ -47,7 +47,7 @@ const TEAM = [
   {
     initials: 'NS',
     name: 'Dr. Nurul I. Sarkar',
-    role: 'Client',
+    role: 'Project Lead',
     bio: 'Professor of Engineering, Computer and Mathematical Sciences at AUT'
   },
   {

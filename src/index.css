@@ -9,16 +9,16 @@
   --bg-card: #111118;
   --bg-card-hover: #16161f;
   --accent: #00e5ff;
-  --accent-dim: rgba(0, 229, 255, 0.12);
-  --accent-glow: rgba(0, 229, 255, 0.25);
+  --accent-dim: #00e5ff1f;
+  --accent-glow: #00e5ff40;
   --text: #f0f0f8;
   --text-muted: #7a7a9a;
   --text-subtle: #3e3e58;
-  --border: rgba(255, 255, 255, 0.06);
-  --border-accent: rgba(0, 229, 255, 0.3);
-  --font-display: 'Syne', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
-  --font-mono: 'DM Mono', monospace;
+  --border: #ffffff0f;
+  --border-accent: #00e5ff4d;
+  --font-display: "Syne",sans-serif;
+  --font-body: "DM Sans",sans-serif;
+  --font-mono: "DM Mono",monospace;
 }
 
 html { scroll-behavior: smooth; }
